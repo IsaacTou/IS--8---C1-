@@ -1,13 +1,35 @@
-@startuml ModeloDelDominio
+@startuml Modelo Del Dominio
 
-package "Modelo de Dominio(ComedorUCV)" {
-    class Insumo {}
-    class Administrador {}
-    class Reporte{}
-    class Estudiante{}
-    class Menú{}
-    class Turno{}
-    class Empleado{}
+package "Modelo de Dominio(Comedor UCV)" {
+    class Insumo {
+        +Nombre
+        +Cantidad
+    }
+    class Administrador {
+        -Id
+        -Clave
+    }
+    class Reporte{
+        +Fecha
+        +Insumos disponibles
+    }
+    class Estudiante{
+        +Id
+        -Clave
+    }
+    class Menú{
+        +Nombre
+        +Insumos
+    }
+    class Turno{
+        +Estudiantes
+        +Menú
+        +Horario
+    }
+    class Empleado{
+        +Id
+        -Clave
+    }
 }
 
 
@@ -22,4 +44,5 @@ Estudiante --o Turno : contiene\n(1..*)
 Menú --* Turno : contiene\n(1..1)
 Turno - Empleado : < establece accesos\n y horarios 
 Menú -- Empleado : consulta <
+
 @enduml
