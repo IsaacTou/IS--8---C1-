@@ -1,6 +1,6 @@
 @startuml ModeloDelDominio
 
-package "Modelo de Dominio(ComerdorUCV)" {
+package "Modelo de Dominio(ComedorUCV)" {
     class Insumo {}
     class Administrador {}
     class Reporte{}
