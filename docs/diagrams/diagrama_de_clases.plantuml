@@ -1,0 +1,25 @@
+@startuml ModeloDelDominio
+
+package "Modelo de Dominio(ComerdorUCV)" {
+    class Insumo {}
+    class Administrador {}
+    class Reporte{}
+    class Estudiante{}
+    class Menú{}
+    class Turno{}
+    class Empleado{}
+}
+
+
+Insumo - Administrador : consulta <
+Reporte -- Administrador : genera\nreporte <
+Reporte  o-- Insumo : contiene\n(1..*)
+Insumo --* Menú : contiene\n(1..*)
+Administrador -- Menú : Modifica menús\npor disponibilidad >
+Estudiante - Menú : consulta >
+Estudiante -- Turno : Se anota\n a un \nturno >
+Estudiante --o Turno : contiene\n(1..*)
+Menú --* Turno : contiene\n(1..1)
+Turno - Empleado : < establece accesos\n y horarios 
+Menú -- Empleado : consulta <
+@enduml
