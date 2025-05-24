@@ -1,0 +1,30 @@
+@startuml DiagramaDeEstados (Estudiante)
+
+' Colores generales
+skinparam backgroundColor #F5F7FA
+skinparam stateStartColor #A7C7E7
+skinparam stateEndColor #F67280
+skinparam stateBackgroundColor #F8E9A1
+skinparam stateBorderColor #355C7D
+skinparam stateFontColor #355C7D
+skinparam stateFontSize 14
+skinparam ArrowColor #355C7D
+skinparam ArrowFontColor #355C7D
+
+state c <<choice>> #F67280
+
+[*] --> ProcesandoIngreso : Estudiante ingresa
+ProcesandoIngreso --> MostrandoMenús : Estudiante revisa opciones
+MostrandoMenús --> MostrandoTurnos : Estudiante revisa\n turnos con menú disponible 
+MostrandoTurnos --> Verificando : Estudiante escoge turno
+Verificando --> c : Verifica disponibilidad
+c --> ConfirmandoReserva : [Hay cupo disponible]
+c --> MostrandoError : [No hay cupo disponible]
+MostrandoMenús <-- MostrandoError
+ConfirmandoReserva --> ActualizandoDisponibilidad : Confirma estudiante
+ActualizandoDisponibilidad --> VerificandoReserva : Estudiante se presenta
+VerificandoReserva --> ActualizandoConsumo : Estudiante consume
+ActualizandoConsumo --> [*] : Estudiante se retira
+
+@enduml
+
