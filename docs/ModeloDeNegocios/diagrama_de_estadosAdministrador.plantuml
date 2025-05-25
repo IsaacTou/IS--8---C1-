@@ -1,0 +1,20 @@
+@startuml DiagramaDeEstados (Administrador)
+
+' Colores generales
+skinparam backgroundColor #F5F7FA
+skinparam stateStartColor #A7C7E7
+skinparam stateEndColor #F67280
+skinparam stateBackgroundColor #F8E9A1
+skinparam stateBorderColor #355C7D
+skinparam stateFontColor #355C7D
+skinparam stateFontSize 14
+skinparam ArrowColor #355C7D
+skinparam ArrowFontColor #355C7D
+
+[*] --> ProcesandoIngreso : Administrador ingresa iniciando semana
+ProcesandoIngreso --> MostrandoInsumosRegistrados : Administrador solicita revisar los insumos registrados
+MostrandoInsumosRegistrados --> PublicandoMenúDeLaSemana : Administrador analiza y diseña menú en base a los insumos
+PublicandoMenúDeLaSemana --> GenerandoReporte: Administrador monitorea el consumo semanal y registra los datos
+GenerandoReporte --> [*] : Administrador organiza recursos de la próxima semana en base al reporte
+
+@enduml
