@@ -1,4 +1,5 @@
 @startuml DiagramaDeEstados (Turnos)
+title Diagrama de estados - Turnos
 
 ' Colores generales
 skinparam backgroundColor #F5F7FA

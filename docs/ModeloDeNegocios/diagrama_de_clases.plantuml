@@ -1,6 +1,6 @@
 @startuml Modelo Del Dominio
 
-package "Modelo de Dominio(Comedor UCV)" {
+package "Modelo de Dominio - Comedor Universitario " {
     class Insumo {
         +Nombre
         +Cantidad
@@ -20,6 +20,7 @@ package "Modelo de Dominio(Comedor UCV)" {
     class Menú{
         +Nombre
         +Insumos
+        +Descripcion 
     }
     class Turno{
         +Estudiantes
