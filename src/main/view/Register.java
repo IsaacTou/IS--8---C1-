@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.swing.*;
 
+import java.awt.event.ActionListener;
+
 public class Register extends JFrame {
     
     JPanel panel;
@@ -73,5 +75,10 @@ public class Register extends JFrame {
     public String getKey () {
         return keyBox.getText();
     }
+
+    public void setControlador(ActionListener controlador) {
+        button.addActionListener(controlador);
+    }
+
 
 }
