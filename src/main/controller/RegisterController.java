@@ -23,7 +23,7 @@ public class RegisterController implements ActionListener {
 
     public RegisterController(RegisterView register, Navigate navigate) {
         this.register = register;
-        this.navigate = Navigate.getInstance();
+        this.navigate = navigate;
         this.register.setController((ActionListener) this);
     }
 
@@ -59,7 +59,7 @@ public class RegisterController implements ActionListener {
                 if(reply == SUCCESS_OP) {  
                     scuManager.createAccount(ci,user,userType,key);
                     reply(SUCCESS_OP);
-                    register.setVisible(false);
+                    register.dispose();
                     navigate.initLogin();       
                 } else {
                     reply(reply);
