@@ -1,15 +1,15 @@
-package src.main.view;
+package src.main.view.pages;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class LoginView extends JFrame {
     JPanel panel;
     JTextField userBox;
     JPasswordField keyBox;
     JButton button;
 
 
-    public Login() {
+    public LoginView() {
         setSize(850,650); // (ancho, largo)
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
         setTitle("Sistema del comedor universitario SCU - Login"); // titulo de la ventana

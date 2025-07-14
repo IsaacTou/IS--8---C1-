@@ -40,7 +40,7 @@ public class RegisterView extends JFrame {
         //title.setBackground(new Color(192, 192, 192, 128)); // RGB (gris claro) con alfa 128
         panel.add(title);
         addDescriptions();
-        addButton();
+        addButtons();
         addciBox();
         adduserBox();
         addkeyBox();
@@ -104,7 +104,7 @@ public class RegisterView extends JFrame {
         panel.add(keyBox);
     }
 
-    private void addButton() {
+    private void addButtons() {
         registerButton = new RegisterButton();
         registerButton.setBounds(boxXPosition, 410, 127, 28);
         registerButton.setActionCommand("REGISTRAR");

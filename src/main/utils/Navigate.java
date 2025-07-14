@@ -1,6 +1,5 @@
 package src.main.utils;
 import src.main.controller.*;
-import src.main.view.*;
 import src.main.view.pages.*;
 
 public class Navigate {
@@ -23,7 +22,7 @@ public class Navigate {
     }
 
     public void initLogin() {
-        Login login = new Login();
+        LoginView login = new LoginView();
         new LoginController(login, this);
         login.setVisible(true);
     }

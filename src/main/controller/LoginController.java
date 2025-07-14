@@ -2,13 +2,14 @@ package src.main.controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import src.main.view.*;
+
+import src.main.view.pages.LoginView;
 import src.main.utils.*;
 import src.main.model.SCUDataManager;
 
 public class LoginController implements ActionListener{
 
-    private Login login;
+    private LoginView login;
     private Navigate navigate;
     private SCUDataManager loguerManager;
 
@@ -17,7 +18,7 @@ public class LoginController implements ActionListener{
     private final int WRONG_PASSWORD = 1;
     private final int SUCCESS_OP = 2;
 
-    public LoginController(Login login, Navigate navigate) {
+    public LoginController(LoginView login, Navigate navigate) {
         this.login = login;
         this.navigate = navigate;
         this.login.setController((ActionListener) this);
