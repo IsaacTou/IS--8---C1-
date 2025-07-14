@@ -18,7 +18,7 @@ public class Register extends JFrame {
     int keyBoxYPosition = 330;
     JTextField ciBox;
     JTextField userBox;
-    JTextField keyBox;
+    JPasswordField keyBox;
 
 
     public Register() {
@@ -100,7 +100,7 @@ public class Register extends JFrame {
     }
 
     private void addkeyBox() {
-        keyBox = new JTextField();
+        keyBox = new JPasswordField();
         keyBox.setBounds(boxXPosition,keyBoxYPosition,200,20);
         panel.add(keyBox);
     }
@@ -125,7 +125,7 @@ public class Register extends JFrame {
     }
 
     public String getKey () {
-        return keyBox.getText();
+        return new String(keyBox.getPassword());
     }
 
     public void setControlador(ActionListener controlador) {
