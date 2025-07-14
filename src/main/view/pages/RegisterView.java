@@ -1,5 +1,5 @@
 
-package src.main.view;
+package src.main.view.pages;
 import java.awt.Color;
 import java.awt.Font;
 
