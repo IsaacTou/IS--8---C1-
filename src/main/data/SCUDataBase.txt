@@ -1,0 +1,3 @@
+31000000,Robert,Estudiante,kiu123
+31065844,Isaac,Estudiante,2005
+31789143,Kuko,Profesor,2005

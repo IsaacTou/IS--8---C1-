@@ -1,11 +1,11 @@
 package src.main;
-import src.main.view.*;
+import src.main.controller.*;
 
 
 public class Main {
     public static void main(String[] args) {
-        Register registrador = new Register();
-        registrador.setVisible(true);
+        Registerc controller = new Registerc();
+        
         
     }
 }

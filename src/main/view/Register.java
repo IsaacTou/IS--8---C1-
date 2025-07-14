@@ -76,9 +76,22 @@ public class Register extends JFrame {
         return keyBox.getText();
     }
 
-    public void setControlador(ActionListener controlador) {
-        button.addActionListener(controlador);
+    public void setController(ActionListener controller) {
+        button.addActionListener(controller);
     }
 
+    public void confirm(String message) {
+        JOptionPane.showMessageDialog(null,
+                                      message,
+                                      "Operacion exitosa",
+                                      JOptionPane.DEFAULT_OPTION);
+    }
+    
+    public void warning(String message) {
+        JOptionPane.showMessageDialog(null,
+                                      message,
+                                      "Operacion fallida",
+                                      JOptionPane.WARNING_MESSAGE);
+    }
 
 }
