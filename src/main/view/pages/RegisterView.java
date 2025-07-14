@@ -152,6 +152,7 @@ public class RegisterView extends JFrame {
                                       message,
                                       "Operacion exitosa",
                                       JOptionPane.DEFAULT_OPTION);
+        
     }
     
     public void warning(String message) {

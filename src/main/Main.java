@@ -1,9 +1,9 @@
 package src.main;
-import src.main.controller.*;
+import src.main.utils.*;
 
 
 public class Main {
     public static void main(String[] args) {
-        RegisterController controller = new RegisterController();
+        Navigate.getInstance().initRegister();       //LoginController controllerL = new LoginController();
     }
 }
