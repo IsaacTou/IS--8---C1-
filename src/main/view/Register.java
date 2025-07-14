@@ -48,14 +48,22 @@ public class Register extends JFrame {
     }
     
     private void addImage() {
+        // Crear el panel para la imagen de fondo
         imageBackground = new JPanel();
         imageBackground.setLayout(null);
-        this.getContentPane().add(panel);
-        imageBackground.setSize(320,650);
-        imageBackground.setBackground(new Color(4,113,166));
-        JLabel imageLabel = new JLabel(new ImageIcon("src/main/images/registro-fondo.png"));
-        imageLabel.setBounds(0, 0, 320, 650);
+        imageBackground.setSize(320, 650);
+        imageBackground.setBackground(new Color(4, 113, 166)); // Color de fondo (opcional)
+        imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
+
+        // Cargar la imagen desde la ruta especificada
+        ImageIcon imageIcon = new ImageIcon("src\\main\\view\\images\\registro-fondo.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
+
+        // Agregar la imagen al panel
         imageBackground.add(imageLabel);
+
+        // Agregar el panel de imagen al panel principal
         panel.add(imageBackground);
     }
 
