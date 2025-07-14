@@ -111,7 +111,7 @@ public class Register extends JFrame {
         button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setBackground(new Color(4,113,166));
         button.setForeground(Color.WHITE);
-        button.setActionCommand("REGISTRO");
+        button.setActionCommand("REGISTRAR");
         panel.add(button);
 
     }
