@@ -1,8 +1,8 @@
 
 package src.main.view.pages;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.*;
 
 import java.awt.event.ActionListener;
@@ -114,6 +114,21 @@ public class RegisterView extends JFrame {
         button.setActionCommand("REGISTRAR");
         panel.add(button);
 
+    }
+
+    // Botón de Registro
+    private class RegisterButton extends Button {
+        public RegisterButton() {
+            super("Registrarse", new Color(4, 113, 166), 127, 28); 
+        }
+
+        @Override
+        protected void configurarAccion() {
+            addActionListener(e -> {
+                // Lógica de registro
+                // Aquí iría tu código de validación de registro
+            });
+        }
     }
 
     public String getCi () {
