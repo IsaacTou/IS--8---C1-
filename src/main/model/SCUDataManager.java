@@ -57,4 +57,37 @@ public class SCUDataManager {
         return NOT_INVALID_OPERATIONS;
     }
 
+    public boolean userExist(String user) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ruteString))){
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[1].equals(user)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean correctPassword(String user, String password) {
+        try (BufferedReader br = new BufferedReader(new FileReader(ruteString))){
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[1].equals(user)) {
+                    if (parts[3].equals(password)) {
+                        return true;
+                    }
+                }
+                
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
+        return false;
+    }
+
 }
