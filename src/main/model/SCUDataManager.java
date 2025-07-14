@@ -7,14 +7,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class scuDataManagment {
+public class SCUDataManager {
 
     private String ruteString;
-    private int USER_TAKEN = 0;
-    private int ALREADY_REGISTER = 2;
-    private int NOT_INVALID_OPERATIONS = 3;
+    private static int USER_TAKEN = 0;
+    private static int ALREADY_REGISTER = 2;
+    private static int NOT_INVALID_OPERATIONS = 3;
     
-    public scuDataManagment() {
+    public SCUDataManager() {
         ruteString = "src/main/data/SCUDataBase.txt";
     }
 
@@ -26,11 +26,6 @@ public class scuDataManagment {
             BufferedWriter bw = new BufferedWriter(fw)) {
 
             if (!isEmpty) bw.newLine();
-            
-            System.out.println(cI);
-            System.out.println(user);
-            System.out.println(userType);
-            System.out.println(key);
 
             bw.write(cI + ",");
             bw.write(user + ",");

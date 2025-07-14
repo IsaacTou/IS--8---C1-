@@ -24,7 +24,7 @@ public class Register extends JFrame {
     public Register() {
         setSize(850,650); // (ancho, largo)
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
-        setTitle("prueba"); // titulo de la ventana
+        setTitle("Sistema del comedor universitario SCU - Registro"); // titulo de la ventana
         setLocationRelativeTo(null); // centra la localizacion de la pantalla 
         addPanel();
         addImage();
@@ -34,7 +34,7 @@ public class Register extends JFrame {
         panel = new JPanel();
         panel.setLayout(null);
         this.getContentPane().add(panel); // agregamos el panel a la ventana
-        JLabel title = new JLabel("REGISTRO");
+        JLabel title = new JLabel("REGISTRAR");
         title.setBounds(415, 132, 350, 40);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Sans Serif", Font.BOLD, 48));
@@ -56,7 +56,7 @@ public class Register extends JFrame {
         imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
 
         // Cargar la imagen desde la ruta especificada
-        ImageIcon imageIcon = new ImageIcon("src\\main\\view\\images\\registro-fondo.png");
+        ImageIcon imageIcon = new ImageIcon("src\\assets\\register_background.png");
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
 

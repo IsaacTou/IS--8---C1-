@@ -4,21 +4,24 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class ucvDataReader {
+public class UCVDataReader {
     private String ruteString;
     private String userType;
-    public ucvDataReader () {
+    private static int IDENTIFICATION_ID = 0;
+    private static int UCV_USER_TYPE = 1;
+
+    public UCVDataReader () {
         ruteString = "src/main/data/UCVDataBase.txt";
         userType = "";
     }
 
-    public boolean findCi(String cI) {
+    public boolean findCi(String ci) {
         try (BufferedReader br = new BufferedReader(new FileReader(ruteString))){
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts[0].equals(cI)) {
-                    this.userType = parts[1];
+                if (parts[IDENTIFICATION_ID].equals(ci)) {
+                    this.userType = parts[UCV_USER_TYPE];
                     return true;
                 }
             }
@@ -28,7 +31,7 @@ public class ucvDataReader {
         return false;
     }
 
-    public String getuserType() {
+    public String getUserType() {
         return this.userType;
     }
     

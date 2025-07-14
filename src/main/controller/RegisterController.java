@@ -4,18 +4,18 @@ import src.main.model.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Registerc implements ActionListener {
+public class RegisterController implements ActionListener {
 
     private Register register;
-    private ucvDataReader ucvLector;
-    private scuDataManagment scuManager;
+    private UCVDataReader ucvLector;
+    private SCUDataManager scuManager;
     private final int USER_TAKEN = 0;
     private final int CI_NOT_FOUND = 1;
     private final int ALREADY_REGISTER = 2;
     private final int SUCCESS_OP = 3;
 
 
-    public Registerc() {
+    public RegisterController() {
         register = new Register();
         register.setVisible(true);
         this.register.setController((ActionListener) this);
@@ -26,21 +26,21 @@ public class Registerc implements ActionListener {
 
         String command = e.getActionCommand();
         
-        if (command == "REGISTRO") {
+        if (command == "REGISTRAR") {
 
             String cI = register.getCi();
             String user = register.getUser();
             String key = register.getKey();
-            ucvLector = new ucvDataReader();
-            scuManager = new scuDataManagment();
+            ucvLector = new UCVDataReader();
+            scuManager = new SCUDataManager();
 
             boolean isCiFind = ucvLector.findCi(cI); 
-            String userType = ucvLector.getuserType();
+            String userType = ucvLector.getUserType();
             
             if (!isCiFind) {
 
                 reply(CI_NOT_FOUND);            
-                
+
             } else {
 
                 int reply = scuManager.invalidOperation(cI, user);
