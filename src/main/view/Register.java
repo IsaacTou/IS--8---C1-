@@ -137,6 +137,7 @@ public class Register extends JFrame {
                                       message,
                                       "Operacion exitosa",
                                       JOptionPane.DEFAULT_OPTION);
+        
     }
     
     public void warning(String message) {

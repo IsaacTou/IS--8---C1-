@@ -3,13 +3,17 @@ import src.main.view.*;
 import src.main.model.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import src.main.utils.*;
 
 public class RegisterController implements ActionListener {
 
+    
     private Register register;
     private UCVDataReader ucvLector;
     private SCUDataManager scuManager;
+    private Navigate navigate;
 
+    // INFORMACION (EVITANDO USAR NUMEROS MAGICOS)
     private final int CAMP_EMPTY = -1;
     private final int USER_TAKEN = 0;
     private final int CI_NOT_FOUND = 1;
@@ -17,9 +21,9 @@ public class RegisterController implements ActionListener {
     private final int SUCCESS_OP = 3;
 
 
-    public RegisterController() {
-        register = new Register();
-        register.setVisible(true);
+    public RegisterController(Register register, Navigate navigate) {
+        this.register = register;
+        this.navigate = Navigate.getInstance();
         this.register.setController((ActionListener) this);
     }
 
@@ -55,6 +59,8 @@ public class RegisterController implements ActionListener {
                 if(reply == SUCCESS_OP) {  
                     scuManager.createAccount(ci,user,userType,key);
                     reply(SUCCESS_OP);
+                    register.setVisible(false);
+                    navigate.initLogin();       
                 } else {
                     reply(reply);
                 }

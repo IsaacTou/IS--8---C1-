@@ -3,22 +3,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import src.main.view.*;
-import src.main.data.*;
+import src.main.utils.*;
 import src.main.model.SCUDataManager;
 
 public class LoginController implements ActionListener{
 
-    Login login;
-    SCUDataManager loguerManager;
+    private Login login;
+    private Navigate navigate;
+    private SCUDataManager loguerManager;
 
     private final int CAMP_EMPTY = -1;
     private final int USER_DOES_NOT_EXIST = 0;
     private final int WRONG_PASSWORD = 1;
     private final int SUCCESS_OP = 2;
 
-    public LoginController() {
-        login = new Login();
-        login.setVisible(true); 
+    public LoginController(Login login, Navigate navigate) {
+        this.login = login;
+        this.navigate = navigate;
         this.login.setController((ActionListener) this);
     } 
     
