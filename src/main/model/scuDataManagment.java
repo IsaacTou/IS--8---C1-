@@ -1,4 +1,5 @@
 package src.main.model;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
@@ -18,13 +19,19 @@ public class scuDataManagment {
     }
 
     public void createAccount (String cI, String user, String userType, String key) {
-        try (FileWriter fw = new FileWriter(ruteString, true);
+        File file = new File(ruteString);
+        boolean isEmpty = (file.length() == 0);
+
+        try (FileWriter fw = new FileWriter(file, true);
             BufferedWriter bw = new BufferedWriter(fw)) {
+
+            if (!isEmpty) bw.newLine();
+            
             System.out.println(cI);
             System.out.println(user);
             System.out.println(userType);
             System.out.println(key);
-            bw.newLine();
+
             bw.write(cI + ",");
             bw.write(user + ",");
             bw.write(userType + ",");
