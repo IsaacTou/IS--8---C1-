@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionListener;
 
-public class Register extends JFrame {
+public class RegisterView extends JFrame {
     
     JPanel panel;
     JPanel imageBackground;
@@ -21,7 +21,7 @@ public class Register extends JFrame {
     JPasswordField keyBox;
 
 
-    public Register() {
+    public RegisterView() {
         setSize(850,650); // (ancho, largo)
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
         setTitle("SGCU - Registro"); // titulo de la ventana

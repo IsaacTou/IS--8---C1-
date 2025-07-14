@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class RegisterController implements ActionListener {
 
-    private Register register;
+    private RegisterView register;
     private UCVDataReader ucvLector;
     private SCUDataManager scuManager;
 
@@ -18,7 +18,7 @@ public class RegisterController implements ActionListener {
 
 
     public RegisterController() {
-        register = new Register();
+        register = new RegisterView();
         register.setVisible(true);
         this.register.setController((ActionListener) this);
     }
