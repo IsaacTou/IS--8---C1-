@@ -1,17 +1,16 @@
 
 package src.main.view.pages;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
-
+import src.main.view.components.*;
 import java.awt.event.ActionListener;
 
 public class RegisterView extends JFrame {
     
     JPanel panel;
     JPanel imageBackground;
-    JButton button;
+    RegisterButton registerButton;
     int boxXPosition = 520;
     int ciBoxYPosition = 230;
     int userBoxYPosition = 280;
@@ -106,29 +105,11 @@ public class RegisterView extends JFrame {
     }
 
     private void addButton() {
-        button = new JButton("Registrar");
-        button.setBounds(boxXPosition, 410, 127, 28);
-        button.setFont(new Font("Arial", Font.BOLD, 18));
-        button.setBackground(new Color(4,113,166));
-        button.setForeground(Color.WHITE);
-        button.setActionCommand("REGISTRAR");
-        panel.add(button);
+        registerButton = new RegisterButton();
+        registerButton.setBounds(boxXPosition, 410, 127, 28);
+        registerButton.setActionCommand("REGISTRAR");
+        panel.add(registerButton);
 
-    }
-
-    // Botón de Registro
-    private class RegisterButton extends Button {
-        public RegisterButton() {
-            super("Registrarse", new Color(4, 113, 166), 127, 28); 
-        }
-
-        @Override
-        protected void configurarAccion() {
-            addActionListener(e -> {
-                // Lógica de registro
-                // Aquí iría tu código de validación de registro
-            });
-        }
     }
 
     public String getCi () {
@@ -144,7 +125,7 @@ public class RegisterView extends JFrame {
     }
 
     public void setController(ActionListener controller) {
-        button.addActionListener(controller);
+        registerButton.addActionListener(controller);
     }
 
     public void confirm(String message) {
