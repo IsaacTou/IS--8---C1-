@@ -1,5 +1,5 @@
 package src.main.controller;
-import src.main.view.*;
+import src.main.view.pages.RegisterView;
 import src.main.model.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import src.main.utils.*;
 public class RegisterController implements ActionListener {
 
     
-    private Register register;
+    private RegisterView register;
     private UCVDataReader ucvLector;
     private SCUDataManager scuManager;
     private Navigate navigate;
@@ -21,7 +21,7 @@ public class RegisterController implements ActionListener {
     private final int SUCCESS_OP = 3;
 
 
-    public RegisterController(Register register, Navigate navigate) {
+    public RegisterController(RegisterView register, Navigate navigate) {
         this.register = register;
         this.navigate = Navigate.getInstance();
         this.register.setController((ActionListener) this);

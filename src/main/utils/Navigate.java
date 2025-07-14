@@ -1,6 +1,7 @@
 package src.main.utils;
 import src.main.controller.*;
 import src.main.view.*;
+import src.main.view.pages.*;
 
 public class Navigate {
    
@@ -16,7 +17,7 @@ public class Navigate {
     }
 
     public void initRegister() {
-        Register register = new Register();
+        RegisterView register = new RegisterView();
         new RegisterController(register, this);
         register.setVisible(true);     
     }

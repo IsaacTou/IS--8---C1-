@@ -1,5 +1,5 @@
 
-package src.main.view;
+package src.main.view.pages;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionListener;
 
-public class Register extends JFrame {
+public class RegisterView extends JFrame {
     
     JPanel panel;
     JPanel imageBackground;
@@ -21,10 +21,10 @@ public class Register extends JFrame {
     JPasswordField keyBox;
 
 
-    public Register() {
+    public RegisterView() {
         setSize(850,650); // (ancho, largo)
         setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
-        setTitle("Sistema del comedor universitario SCU - Registro"); // titulo de la ventana
+        setTitle("SGCU - Registro"); // titulo de la ventana
         setLocationRelativeTo(null); // centra la localizacion de la pantalla 
         addPanel();
         addImage();
@@ -34,7 +34,7 @@ public class Register extends JFrame {
         panel = new JPanel();
         panel.setLayout(null);
         this.getContentPane().add(panel); // agregamos el panel a la ventana
-        JLabel title = new JLabel("REGISTRAR");
+        JLabel title = new JLabel("REGISTRO");
         title.setBounds(415, 132, 350, 40);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Sans Serif", Font.BOLD, 48));
