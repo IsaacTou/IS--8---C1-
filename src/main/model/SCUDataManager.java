@@ -10,6 +10,7 @@ import java.io.IOException;
 public class SCUDataManager {
 
     private String ruteString;
+
     private static int USER_TAKEN = 0;
     private static int ALREADY_REGISTER = 2;
     private static int NOT_INVALID_OPERATIONS = 3;
@@ -30,7 +31,8 @@ public class SCUDataManager {
             bw.write(cI + ",");
             bw.write(user + ",");
             bw.write(userType + ",");
-            bw.write(key);
+            bw.write(key + ",");
+            bw.write("0"); // Balance inicial (Wallet)
        
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
