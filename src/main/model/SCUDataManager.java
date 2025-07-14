@@ -10,6 +10,7 @@ import java.io.IOException;
 public class SCUDataManager {
 
     private String ruteString;
+    private String loginTarget;
 
     private static int USER_TAKEN = 0;
     private static int ALREADY_REGISTER = 2;
@@ -17,6 +18,7 @@ public class SCUDataManager {
     
     public SCUDataManager() {
         ruteString = "src/main/data/SCUDataBase.txt";
+        loginTarget = "";
     }
 
     public void createAccount (String cI, String user, String userType, String key) {
@@ -63,6 +65,7 @@ public class SCUDataManager {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts[1].equals(user)) {
+                    this.loginTarget = line;
                     return true;
                 }
             }
@@ -73,21 +76,15 @@ public class SCUDataManager {
     }
 
     public boolean correctPassword(String user, String password) {
-        try (BufferedReader br = new BufferedReader(new FileReader(ruteString))){
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[1].equals(user)) {
-                    if (parts[3].equals(password)) {
-                        return true;
-                    }
-                }
-                
+
+        String[] parts = this.loginTarget.split(",");
+        if (parts[1].equals(user)) {
+            if (parts[3].equals(password)) {
+                return true;
             }
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
         }
         return false;
+
     }
 
 }
