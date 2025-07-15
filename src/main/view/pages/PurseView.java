@@ -1,4 +1,3 @@
-
 package src.main.view.pages;
 import java.awt.Color;
 import java.awt.Font;
@@ -6,6 +5,7 @@ import javax.swing.*;
 import src.main.view.components.*;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class PurseView extends JFrame {
 
 	JPanel panel;
@@ -106,6 +106,11 @@ public class PurseView extends JFrame {
 		reloadButton.setBounds(boxXPosition, 410, 127, 28);
 		reloadButton.setActionCommand("RELOAD");
 		panel.add(reloadButton);
+
+		int xPosition = 450;
+		Button backButton = new BackButton();
+		backButton.setBounds(xPosition, 410, 127, 28);
+		panel.add(backButton);
 	}
 
 	public String getAmount() {
@@ -130,5 +135,4 @@ public class PurseView extends JFrame {
 			"Operacion fallida",
 			JOptionPane.WARNING_MESSAGE);
 	}
-
 }
