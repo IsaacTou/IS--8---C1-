@@ -1,4 +1,3 @@
-
 package src.main.view.pages;
 import java.awt.Color;
 import java.awt.Font;
@@ -6,145 +5,146 @@ import javax.swing.*;
 import src.main.view.components.*;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class RegisterView extends JFrame {
-    
-    JPanel panel;
-    JPanel imageBackground;
-    RegisterButton registerButton;
-    BackButton backButton;
-    int boxXPosition = 520;
-    int ciBoxYPosition = 230;
-    int userBoxYPosition = 280;
-    int keyBoxYPosition = 330;
-    int xPosition = 440;
-    JTextField ciBox;
-    JTextField userBox;
-    JPasswordField keyBox;
+
+	JPanel panel;
+	JPanel imageBackground;
+	RegisterButton registerButton;
+	BackButton backButton;
+	int boxXPosition = 520;
+	int ciBoxYPosition = 230;
+	int userBoxYPosition = 280;
+	int keyBoxYPosition = 330;
+	int xPosition = 440;
+	JTextField ciBox;
+	JTextField userBox;
+	JPasswordField keyBox;
 
 
-    public RegisterView() {
-        setSize(850,650); // (ancho, largo)
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
-        setTitle("SGCU - Registro"); // titulo de la ventana
-        setLocationRelativeTo(null); // centra la localizacion de la pantalla 
-        addPanel();
-        addImage();
-    }
+	public RegisterView() {
+		setSize(850,650); // (ancho, largo)
+		setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
+		setTitle("SGCU - Registro"); // titulo de la ventana
+		setLocationRelativeTo(null); // centra la localizacion de la pantalla 
+		addPanel();
+		addImage();
+	}
 
-    private void addPanel() {
-        panel = new JPanel();
-        panel.setLayout(null);
-        this.getContentPane().add(panel); // agregamos el panel a la ventana
-        JLabel title = new JLabel("REGISTRO");
-        title.setBounds(415, 132, 350, 40);
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(new Font("Sans Serif", Font.BOLD, 48));
-        //title.setBackground(new Color(192, 192, 192, 128)); // RGB (gris claro) con alfa 128
-        panel.add(title);
-        addDescriptions();
-        addButtons();
-        addciBox();
-        adduserBox();
-        addkeyBox();
-    }
-    
-    private void addImage() {
-        // Crear el panel para la imagen de fondo
-        imageBackground = new JPanel();
-        imageBackground.setLayout(null);
-        imageBackground.setSize(320, 650);
-        imageBackground.setBackground(new Color(4, 113, 166)); // Color de fondo (opcional)
-        imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
+	private void addPanel() {
+		panel = new JPanel();
+		panel.setLayout(null);
+		this.getContentPane().add(panel); // agregamos el panel a la ventana
+		JLabel title = new JLabel("REGISTRO");
+		title.setBounds(415, 132, 350, 40);
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setFont(new Font("Sans Serif", Font.BOLD, 48));
+		//title.setBackground(new Color(192, 192, 192, 128)); // RGB (gris claro) con alfa 128
+		panel.add(title);
+		addDescriptions();
+		addButtons();
+		addciBox();
+		adduserBox();
+		addkeyBox();
+	}
 
-        // Cargar la imagen desde la ruta especificada
-        ImageIcon imageIcon = new ImageIcon("src\\assets\\register_background.png");
-        JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
+	private void addImage() {
+		// Crear el panel para la imagen de fondo
+		imageBackground = new JPanel();
+		imageBackground.setLayout(null);
+		imageBackground.setSize(320, 650);
+		imageBackground.setBackground(new Color(4, 113, 166)); // Color de fondo (opcional)
+		imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
 
-        // Agregar la imagen al panel
-        imageBackground.add(imageLabel);
+		// Cargar la imagen desde la ruta especificada
+		ImageIcon imageIcon = new ImageIcon("src\\assets\\register_background.png");
+		JLabel imageLabel = new JLabel(imageIcon);
+		imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
 
-        // Agregar el panel de imagen al panel principal
-        panel.add(imageBackground);
-    }
+		// Agregar la imagen al panel
+		imageBackground.add(imageLabel);
 
-    private void addDescriptions() {
-        
-        JLabel ciLabel = new JLabel("CI:");
-        ciLabel.setBounds(xPosition, 230, 200, 20);
-        ciLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
-        panel.add(ciLabel);
+		// Agregar el panel de imagen al panel principal
+		panel.add(imageBackground);
+	}
 
-        JLabel userLabel = new JLabel("Usuario:");
-        userLabel.setBounds(xPosition, 280, 200, 20);
-        userLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
-        panel.add(userLabel);
+	private void addDescriptions() {
 
-        JLabel keyLabel = new JLabel("Clave:");
-        keyLabel.setBounds(xPosition, 330, 200, 20);
-        keyLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
-        panel.add(keyLabel);
-    }
+		JLabel ciLabel = new JLabel("CI:");
+		ciLabel.setBounds(xPosition, 230, 200, 20);
+		ciLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
+		panel.add(ciLabel);
 
-    private void addciBox() {
-        ciBox = new JTextField();
-        ciBox.setBounds(boxXPosition, ciBoxYPosition, 200, 20);
-        panel.add(ciBox);
+		JLabel userLabel = new JLabel("Usuario:");
+		userLabel.setBounds(xPosition, 280, 200, 20);
+		userLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
+		panel.add(userLabel);
 
-    }
+		JLabel keyLabel = new JLabel("Clave:");
+		keyLabel.setBounds(xPosition, 330, 200, 20);
+		keyLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
+		panel.add(keyLabel);
+	}
 
-    private void adduserBox() {
-        userBox = new JTextField();
-        userBox.setBounds(boxXPosition, userBoxYPosition, 200, 20);
-        panel.add(userBox);
+	private void addciBox() {
+		ciBox = new JTextField();
+		ciBox.setBounds(boxXPosition, ciBoxYPosition, 200, 20);
+		panel.add(ciBox);
 
-    }
+	}
 
-    private void addkeyBox() {
-        keyBox = new JPasswordField();
-        keyBox.setBounds(boxXPosition,keyBoxYPosition,200,20);
-        panel.add(keyBox);
-    }
+	private void adduserBox() {
+		userBox = new JTextField();
+		userBox.setBounds(boxXPosition, userBoxYPosition, 200, 20);
+		panel.add(userBox);
 
-    private void addButtons() {
-        registerButton = new RegisterButton();
-        registerButton.setBounds(xPosition + 192, 410, 127, 28);
-        panel.add(registerButton);
+	}
 
-        backButton = new BackButton();
-        backButton.setBounds(xPosition, 410, 127, 28);
-        panel.add(backButton);
-    }
+	private void addkeyBox() {
+		keyBox = new JPasswordField();
+		keyBox.setBounds(boxXPosition,keyBoxYPosition,200,20);
+		panel.add(keyBox);
+	}
 
-    public String getCi () {
-        return ciBox.getText();
-    }
+	private void addButtons() {
+		registerButton = new RegisterButton();
+		registerButton.setBounds(xPosition + 192, 410, 127, 28);
+		panel.add(registerButton);
 
-    public String getUser () {
-        return userBox.getText();
-    }
+		backButton = new BackButton();
+		backButton.setBounds(xPosition, 410, 127, 28);
+		panel.add(backButton);
+	}
 
-    public String getKey () {
-        return new String(keyBox.getPassword());
-    }
+	public String getCi () {
+		return ciBox.getText();
+	}
 
-    public void setController(ActionListener controller) {
-        registerButton.addActionListener(controller);
-    }
+	public String getUser () {
+		return userBox.getText();
+	}
 
-    public void confirm(String message) {
-        JOptionPane.showMessageDialog(null,
-                                      message,
-                                      "Operacion exitosa",
-                                      JOptionPane.DEFAULT_OPTION);
-        
-    }
-    
-    public void warning(String message) {
-        JOptionPane.showMessageDialog(null,
-                                      message,
-                                      "Operacion fallida",
-                                      JOptionPane.WARNING_MESSAGE);
-    }
+	public String getKey () {
+		return new String(keyBox.getPassword());
+	}
+
+	public void setController(ActionListener controller) {
+		registerButton.addActionListener(controller);
+	}
+
+	public void confirm(String message) {
+		JOptionPane.showMessageDialog(null,
+			message,
+			"Operacion exitosa",
+			JOptionPane.DEFAULT_OPTION);
+
+	}
+
+	public void warning(String message) {
+		JOptionPane.showMessageDialog(null,
+			message,
+			"Operacion fallida",
+			JOptionPane.WARNING_MESSAGE);
+	}
 
 }
