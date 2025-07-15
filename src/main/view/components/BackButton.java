@@ -1,7 +1,7 @@
 package src.main.view.components;
 import java.awt.Color;
 
-// Botón de Volver Atrás
+@SuppressWarnings("serial")
 public class BackButton extends Button {
     public BackButton() {
         super("Volver", new Color(166, 4, 4), 127, 28); //Color rojo y tamaño por defecto
