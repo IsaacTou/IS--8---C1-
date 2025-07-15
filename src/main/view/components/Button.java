@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
 
+@SuppressWarnings("serial")
 public abstract class Button extends JButton {
     public Button(String text, Color colorBackground, int width, int height) {
         super(text);
