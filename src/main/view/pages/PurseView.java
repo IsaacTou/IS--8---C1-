@@ -103,7 +103,7 @@ public class PurseView extends JFrame {
 
 	private void addButtons() {
 		reloadButton = new ReloadButton();
-		reloadButton.setBounds(boxXPosition, 410, 127, 28);
+		reloadButton.setBounds(boxXPosition + 100, 410, 127, 28);
 		reloadButton.setActionCommand("RELOAD");
 		panel.add(reloadButton);
 
