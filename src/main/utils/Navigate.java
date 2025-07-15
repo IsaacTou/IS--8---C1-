@@ -26,5 +26,11 @@ public class Navigate {
         new LoginController(login, this);
         login.setVisible(true);
     }
+    public void initPurse() {
+        PurseView purse = new PurseView();
+        new PurseController(purse, this);
+        purse.setVisible(true);
+    }
+
     
 }
