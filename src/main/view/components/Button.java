@@ -3,7 +3,6 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 
 public abstract class Button extends JButton {
     public Button(String text, Color colorBackground, int width, int height) {
@@ -14,11 +13,6 @@ public abstract class Button extends JButton {
         setForeground(Color.WHITE); // Texto en blanco por defecto
         setPreferredSize(new Dimension(width, height)); // Tamaño por defecto
         
-        // Configura el listener específico de cada botón
-        configurarAccion();
     }
-    
-    protected abstract void configurarAccion();
-    
 }
 

@@ -11,10 +11,12 @@ public class RegisterView extends JFrame {
     JPanel panel;
     JPanel imageBackground;
     RegisterButton registerButton;
+    BackButton backButton;
     int boxXPosition = 520;
     int ciBoxYPosition = 230;
     int userBoxYPosition = 280;
     int keyBoxYPosition = 330;
+    int xPosition = 440;
     JTextField ciBox;
     JTextField userBox;
     JPasswordField keyBox;
@@ -67,7 +69,7 @@ public class RegisterView extends JFrame {
     }
 
     private void addDescriptions() {
-        int xPosition = 440;
+        
         JLabel ciLabel = new JLabel("CI:");
         ciLabel.setBounds(xPosition, 230, 200, 20);
         ciLabel.setFont(new Font("Sans Serif", Font.PLAIN,18));
@@ -106,10 +108,12 @@ public class RegisterView extends JFrame {
 
     private void addButtons() {
         registerButton = new RegisterButton();
-        registerButton.setBounds(boxXPosition, 410, 127, 28);
-        registerButton.setActionCommand("REGISTRAR");
+        registerButton.setBounds(xPosition + 192, 410, 127, 28);
         panel.add(registerButton);
 
+        backButton = new BackButton();
+        backButton.setBounds(xPosition, 410, 127, 28);
+        panel.add(backButton);
     }
 
     public String getCi () {
