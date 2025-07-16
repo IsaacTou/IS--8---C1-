@@ -1,6 +1,5 @@
 package src.main.view.pages;
     
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.*;
@@ -10,13 +9,13 @@ import java.awt.event.ActionListener;
 
 public class PrincipalView extends JFrame {
     
-
-
 	JPanel panel;
     JPanel centerPanel;
-	JPanel imageBackground;
+	ImagePanel imageBackground;
+    ImagePanel centerBackground;
     ConsumeButton consume;
     CheckMenuButton checkMenu;
+
 	int boxXPosition = 520;
 	int ciBoxYPosition = 230;
 	int userBoxYPosition = 280;
@@ -48,35 +47,20 @@ public class PrincipalView extends JFrame {
 	    title.setFont(new Font("Sans Serif", Font.BOLD, 20));
         panel.add(title);
     }
-
+    
     private void addImage() {
-        imageBackground = new JPanel();
-        imageBackground.setLayout(null);
-        imageBackground.setBackground(new Color(4, 113, 166));
-        imageBackground.setBounds(230, 0, 630, 650); // Empieza justo en la línea roja
-
-        ImageIcon imageIcon = new ImageIcon("src\\assets\\principal_background.png");
-        Image scaledImage = imageIcon.getImage().getScaledInstance(630, 650, Image.SCALE_SMOOTH);
-        JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
-        imageLabel.setBounds(0, 0, 630, 650);
-
-        imageBackground.add(imageLabel);
+        imageBackground = new ImagePanel("principal_background.png",630, 650, 230, 0);
         this.getContentPane().add(imageBackground);
     }
 
     private void addCenterPanel() {
         centerPanel = new JPanel();
         centerPanel.setLayout(null);
-        centerPanel.setOpaque(true); // Para que sea transparente y se vea la imagen de fondo
         centerPanel.setBounds(450, 200, 200, 250); // Posición y tamaño del panel central
 
         // Imagen pequeña dentro del panel central
-        ImageIcon icon = new ImageIcon("src\\assets\\user.png"); // Usa tu imagen
-        Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Solo 100x100 px
-        JLabel imageLabel = new JLabel(new ImageIcon(scaled));
-        imageLabel.setBounds(50, 50, 100, 100); // Centrada dentro del panel central
-
-        centerPanel.add(imageLabel);
+        centerBackground = new ImagePanel("user.png",100,100,50,50);
+        centerPanel.add(centerBackground);
 
         this.getContentPane().add(centerPanel);
     }
@@ -94,10 +78,8 @@ public class PrincipalView extends JFrame {
 
     }
 
+    public void addAdminButtons() {
 
-
-
+    }
 
 }
-
-

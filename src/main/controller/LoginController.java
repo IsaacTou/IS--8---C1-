@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import src.main.view.pages.LoginView;
 import src.main.utils.*;
-import src.main.model.SCUDataManager;
+import src.main.model.*;
 
 public class LoginController implements ActionListener {
 
@@ -39,7 +39,10 @@ public class LoginController implements ActionListener {
 			if(loguerManager.userExist(user)) {
 				if (loguerManager.correctPassword(user, key)) {
 					reply(SUCCESS_OP);
+					User sesionUser = new User(loguerManager.getCi(), loguerManager.getUser(), loguerManager.getUserType(), loguerManager.getWallet());
+					SesionUser.getInstance().setSesionUser(sesionUser);
 					login.dispose();
+
 					Navigate.getInstance().initPrincipalView();
 				} else {
 					reply(WRONG_PASSWORD);

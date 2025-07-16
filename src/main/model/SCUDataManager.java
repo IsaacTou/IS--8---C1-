@@ -87,4 +87,24 @@ public class SCUDataManager {
 
     }
 
+    public String getCi() {
+        String[] parts = this.loginTarget.split(",");
+        return parts[0];
+    }
+
+    public String getUser() {
+        String[] parts = this.loginTarget.split(",");
+        return parts[1];
+    }
+
+    public String getUserType() {
+        String[] parts = this.loginTarget.split(",");
+        return parts[2];
+    }
+
+    public String getWallet() {
+        String[] parts = this.loginTarget.split(",");
+        return parts[4];
+    }
+
 }
