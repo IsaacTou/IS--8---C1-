@@ -38,5 +38,11 @@ public class Navigate {
         view.setVisible(true);
     }
 
+    public void initCCBView() {
+        CCBView ccbView = new CCBView();
+        new CCBController(ccbView);
+        ccbView.setVisible(true);
+    }
+
     
 }
