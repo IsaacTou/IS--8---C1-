@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class ImagePanel extends JPanel {
 
     public ImagePanel(String imageFileName, int width, int height, int x, int y) {
