@@ -17,19 +17,25 @@ public class Navigate {
 
     public void initRegister() {
         RegisterView register = new RegisterView();
-        new RegisterController(register, this);
+        new RegisterController(register);
         register.setVisible(true);     
     }
 
     public void initLogin() {
         LoginView login = new LoginView();
-        new LoginController(login, this);
+        new LoginController(login);
         login.setVisible(true);
     }
+    
     public void initPurse() {
         PurseView purse = new PurseView();
-        new PurseController(purse, this);
+        new PurseController(purse);
         purse.setVisible(true);
+    }
+
+    public void initPrincipalView() {
+        PrincipalView view = new PrincipalView();
+        view.setVisible(true);
     }
 
     

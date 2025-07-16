@@ -9,7 +9,6 @@ import src.main.model.SCUDataManager;
 public class LoginController implements ActionListener {
 
 	private LoginView login;
-	private Navigate navigate;
 	private SCUDataManager loguerManager;
 
 	private final int FIELD_EMPTY = -1;
@@ -17,9 +16,8 @@ public class LoginController implements ActionListener {
 	private final int WRONG_PASSWORD = 1;
 	private final int SUCCESS_OP = 2;
 
-	public LoginController(LoginView login, Navigate navigate) {
+	public LoginController(LoginView login) {
 		this.login = login;
-		this.navigate = navigate;
 		this.login.setController((ActionListener) this);
 	} 
 
@@ -41,7 +39,8 @@ public class LoginController implements ActionListener {
 			if(loguerManager.userExist(user)) {
 				if (loguerManager.correctPassword(user, key)) {
 					reply(SUCCESS_OP);
-					// SECCION QUE ACTIVE X CODIGO DE INICIO DE SESION (EN VEREMOS)
+					login.dispose();
+					Navigate.getInstance().initPrincipalView();
 				} else {
 					reply(WRONG_PASSWORD);
 				}

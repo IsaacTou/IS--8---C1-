@@ -11,7 +11,6 @@ public class RegisterController implements ActionListener {
     private RegisterView register;
     private UCVDataReader ucvLector;
     private SCUDataManager scuManager;
-    private Navigate navigate;
 
     // INFORMACION (EVITANDO USAR NUMEROS MAGICOS)
     private final int CAMP_EMPTY = -1;
@@ -21,9 +20,8 @@ public class RegisterController implements ActionListener {
     private final int SUCCESS_OP = 3;
 
 
-    public RegisterController(RegisterView register, Navigate navigate) {
+    public RegisterController(RegisterView register) {
         this.register = register;
-        this.navigate = navigate;
         this.register.setController((ActionListener) this);
     }
 
@@ -60,7 +58,8 @@ public class RegisterController implements ActionListener {
                     scuManager.createAccount(ci,user,userType,key);
                     reply(SUCCESS_OP);
                     register.dispose();
-                    navigate.initLogin();       
+                    Navigate.getInstance().initLogin();
+                           
                 } else {
                     reply(reply);
                 }
