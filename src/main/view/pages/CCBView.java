@@ -25,7 +25,7 @@ public class CCBView extends JFrame {
     }
 
     private void initComponents() {
-        // Panel principal con imagen de fondo
+     
         mainPanel = new JPanel(null) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -38,13 +38,13 @@ public class CCBView extends JFrame {
         mainPanel.setPreferredSize(new Dimension(1000, 700));
         getContentPane().add(mainPanel);
 
-        // Panel del formulario (más ancho)
+   
         formPanel = new JPanel(null);
         formPanel.setOpaque(false);
         formPanel.setBounds(300, 30, 400, 620);
         mainPanel.add(formPanel);
 
-        // Título centrado
+        
         JLabel title = new JLabel("CÁLCULO CCB", SwingConstants.CENTER);
         title.setBounds(0, 10, 400, 40);
         title.setFont(new Font("Sans Serif", Font.BOLD, 28));
@@ -56,34 +56,34 @@ public class CCBView extends JFrame {
         int yPos = 70;
         int spacing = 80;
 
-        // Costos fijos
+   
         addCenteredField("Costos fijos totales (Bs):", xPos, yPos, fieldWidth);
         cfTxt = createCenteredTextField(xPos, yPos + 25, fieldWidth);
 
-        // Separador
+     
         addSeparator(xPos, yPos + 70, fieldWidth);
 
         yPos += spacing;
 
-        // Costos variables
+        
         addCenteredField("Costos variables (%):", xPos, yPos, fieldWidth);
         cvTxt = createCenteredTextField(xPos, yPos + 25, fieldWidth);
 
         yPos += spacing;
 
-        // Cantidad de bandejas
+        
         addCenteredField("Cantidad de bandejas:", xPos, yPos, fieldWidth);
         nbTxt = createCenteredTextField(xPos, yPos + 25, fieldWidth);
 
         yPos += spacing;
 
-        // Porcentaje de merma
+        
         addCenteredField("Porcentaje de merma (%):", xPos, yPos, fieldWidth);
         mermaTxt = createCenteredTextField(xPos, yPos + 25, fieldWidth);
 
         yPos += 90;
 
-        // Botones centrados
+     
         int buttonWidth = 200;
         int buttonX = (400 - buttonWidth) / 2;
         int buttonHeight = 45;
@@ -154,7 +154,7 @@ public class CCBView extends JFrame {
         return button;
     }
 
-    // Getters
+  
     public String getCostosFijos() { return cfTxt.getText(); }
     public String getCostosVariables() { return cvTxt.getText(); }
     public String getNumeroBandejas() { return nbTxt.getText(); }
