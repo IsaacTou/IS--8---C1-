@@ -1,10 +1,8 @@
 package src.main.view.pages;
     
 import java.awt.Font;
-import java.awt.Image;
 import javax.swing.*;
 import src.main.view.components.*;
-import java.awt.event.ActionListener;
 
 
 public class PrincipalView extends JFrame {
