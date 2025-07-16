@@ -2,6 +2,8 @@ package src.main.view.pages;
     
 import java.awt.Font;
 import javax.swing.*;
+import src.main.model.SesionUser;
+import src.main.utils.Navigate;
 import src.main.view.components.*;
 
 
@@ -22,17 +24,21 @@ public class PrincipalView extends JFrame {
 
 
 	public PrincipalView() {
-		setSize(850,650); // (ancho, largo)
-		setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
-		setTitle("SGCU"); // titulo de la ventana
-		setLocationRelativeTo(null); // centra la localizacion de la pantalla 
-        setLayout(null);
-		addPanel();
-        addCenterPanel();
-        addButtons();
-		addImage();
+    setSize(850,650);
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    setTitle("SGCU"); 
+    setLocationRelativeTo(null);
+    addPanel();
+    addCenterPanel();
+    addButtons();
+    addImage();
 
-	}
+    // Verificar si es admin y mostrar botones adicionales
+    if(SesionUser.getInstance().getUser() != null && 
+       SesionUser.getInstance().getUser().getUserType().equals("admin")) {
+        addAdminButtons();
+    }
+}
 
 	private void addPanel() {
         panel = new JPanel();
@@ -76,8 +82,14 @@ public class PrincipalView extends JFrame {
 
     }
 
-    public void addAdminButtons() {
-
-    }
+    private void addAdminButtons() {
+    CalculateCCBButton calculateCCBButton = new CalculateCCBButton();
+    calculateCCBButton.setBounds(18, 350, 190, 50);
+    calculateCCBButton.addActionListener(e -> {
+        this.dispose();
+        Navigate.getInstance().initCCBView();
+    });
+    panel.add(calculateCCBButton);
+}
 
 }
