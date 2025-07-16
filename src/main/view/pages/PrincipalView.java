@@ -5,8 +5,9 @@ import javax.swing.*;
 import src.main.model.SesionUser;
 import src.main.utils.Navigate;
 import src.main.view.components.*;
+import java.awt.event.ActionListener;
 
-
+@SuppressWarnings("serial")
 public class PrincipalView extends JFrame {
     
 	JPanel panel;
@@ -15,6 +16,7 @@ public class PrincipalView extends JFrame {
     ImagePanel centerBackground;
     ConsumeButton consume;
     CheckMenuButton checkMenu;
+    CheckMenuButton checkPurse;
 
 	int boxXPosition = 520;
 	int ciBoxYPosition = 230;
@@ -78,9 +80,12 @@ public class PrincipalView extends JFrame {
         checkMenu = new CheckMenuButton();
         checkMenu.setBounds(18,300,190,50);
         panel.add(checkMenu);
-
-
     }
+
+       public void setController(ActionListener controller) {
+               checkPurse.addActionListener(controller);
+       }
+
 
     private void addAdminButtons() {
     CalculateCCBButton calculateCCBButton = new CalculateCCBButton();
