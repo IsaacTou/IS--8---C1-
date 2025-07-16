@@ -10,7 +10,7 @@ run: $(MAIN)
 	$(JAVA) $(MAIN)
 
 $(MAIN):
-	$(JAVAC) $(SRC)
+	@$(JAVAC) $(SRC)
 
 clean:
 	rm -r $(OBJ)
