@@ -1,9 +1,10 @@
 package src.main.view.pages;
 import javax.swing.*;
-import java.awt.Color;
 import java.awt.Font;
 import src.main.view.components.LoginButton;
 import src.main.view.components.BackButton;
+import src.main.view.components.ImagePanel;
+
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
@@ -13,7 +14,6 @@ public class LoginView extends JFrame {
 	JPasswordField keyBox;
 	LoginButton loginButton;
 	BackButton backButton;
-	JPanel imageBackground;
 	int boxYPosition = 280; // Posicion Y de los cuadros de texto
 	int boxXPosition = 550; // Posicion X de los cuadros de texto
 
@@ -76,23 +76,8 @@ public class LoginView extends JFrame {
 	}
 
 	private void addImage() {
-		// Crear el panel para la imagen de fondo
-		imageBackground = new JPanel();
-		imageBackground.setLayout(null);
-		imageBackground.setSize(320, 650);
-		imageBackground.setBackground(new Color(4, 113, 166)); // Color de fondo (opcional)
-		imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
-
-		// Cargar la imagen desde la ruta especificada
-		ImageIcon imageIcon = new ImageIcon("src\\assets\\register_background.png");
-		JLabel imageLabel = new JLabel(imageIcon);
-		imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
-
-		// Agregar la imagen al panel
-		imageBackground.add(imageLabel);
-
-		// Agregar el panel de imagen al panel principal
-		panel.add(imageBackground);
+		ImagePanel imagePanel = new ImagePanel("register_background.png", 320, 650, 0, 0);
+		panel.add(imagePanel);
 	}
 
 	public String getUser() {

@@ -1,5 +1,4 @@
 package src.main.view.pages;
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
 import src.main.view.components.*;
@@ -9,7 +8,6 @@ import java.awt.event.ActionListener;
 public class RegisterView extends JFrame {
 
 	JPanel panel;
-	JPanel imageBackground;
 	RegisterButton registerButton;
 	BackButton backButton;
 	int boxXPosition = 520;
@@ -49,23 +47,8 @@ public class RegisterView extends JFrame {
 	}
 
 	private void addImage() {
-		// Crear el panel para la imagen de fondo
-		imageBackground = new JPanel();
-		imageBackground.setLayout(null);
-		imageBackground.setSize(320, 650);
-		imageBackground.setBackground(new Color(4, 113, 166)); // Color de fondo (opcional)
-		imageBackground.setBounds(0, 0, 320, 650); // Establece el tamaño y posición del panel
-
-		// Cargar la imagen desde la ruta especificada
-		ImageIcon imageIcon = new ImageIcon("src\\assets\\register_background.png");
-		JLabel imageLabel = new JLabel(imageIcon);
-		imageLabel.setBounds(0, 0, 320, 650); // Ajustar el tamaño y posición de la imagen
-
-		// Agregar la imagen al panel
-		imageBackground.add(imageLabel);
-
-		// Agregar el panel de imagen al panel principal
-		panel.add(imageBackground);
+		ImagePanel imagePanel = new ImagePanel("register_background.png", 320, 650, 0, 0);
+		panel.add(imagePanel);
 	}
 
 	private void addDescriptions() {
