@@ -1,60 +1,79 @@
 package src.main.view.pages;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import src.main.view.components.ImagePanel;
+import src.main.view.components.RoundedPanel;
 
 @SuppressWarnings("serial")
 public class WelcomeView extends JFrame {
 
+    private JPanel panel;
     private JButton loginButton;
     private JButton registerButton;
 
     public WelcomeView() {
-        setTitle("Bienvenido a SGCU");
-        setSize(850, 650); // mismo tamaño que las demás
+        setTitle("SGCU - Bienvenido");
+        setSize(850, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);
+        addPanel();
+        addImage();
+    }
 
-        // Fondo opcional
-        getContentPane().setBackground(new Color(230, 240, 250));
+    private void addPanel() {
+        panel = new JPanel();
+        panel.setLayout(null);
+        this.getContentPane().add(panel);
 
-        // Título
-        JLabel title = new JLabel("Bienvenido a SGCU", SwingConstants.CENTER);
-        title.setBounds(200, 50, 450, 60);
-        title.setFont(new Font("Sans Serif", Font.BOLD, 36));
-        title.setForeground(new Color(0, 70, 140));
-        add(title);
+        addHeader();
+        addContentBox();
+    }
 
-        // Subtítulo
-        JLabel subtitle = new JLabel("¿Qué deseas hacer?", SwingConstants.CENTER);
-        subtitle.setBounds(250, 130, 350, 30);
-        subtitle.setFont(new Font("Sans Serif", Font.PLAIN, 20));
-        subtitle.setForeground(new Color(60, 60, 60));
-        add(subtitle);
+    private void addImage() {
+        ImagePanel imagePanel = new ImagePanel("register_background.png", 320, 650, 0, 0);
+        panel.add(imagePanel);
+    }
 
-        // Panel de botones
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 1, 20, 20));
-        buttonPanel.setBounds(300, 200, 250, 130);
-        buttonPanel.setBackground(new Color(230, 240, 250));
+    private void addHeader() {
+        Color darkBlue = new Color(0, 51, 102);
+        // Título dividido en dos líneas
+        JLabel title1 = new JLabel("Servicio de Comedor");
+        title1.setFont(new Font("Sans Serif", Font.BOLD, 38));
+        title1.setBounds(330, 60, 400, 30);
+        title1.setForeground(darkBlue);
 
-        loginButton = createStyledButton("Iniciar sesión");
-        registerButton = createStyledButton("Registrarse");
+        JLabel title2 = new JLabel("Universitario");
+        title2.setFont(new Font("Sans Serif", Font.BOLD, 38));
+        title2.setBounds(330, 100, 400, 30);
+        title2.setForeground(darkBlue);
 
-        buttonPanel.add(loginButton);
-        buttonPanel.add(registerButton);
-        add(buttonPanel);
+        JLabel subtitle = new JLabel("Universidad Central de Venezuela");
+        subtitle.setFont(new Font("Sans Serif", Font.PLAIN, 16));
+        subtitle.setForeground(new Color(80, 80, 80));
+        subtitle.setBounds(335, 135, 400, 20);
+
+        // Logo a la derecha del texto
+        ImageIcon logoIcon = new ImageIcon("src/assets/ucv_logo.png");
+        Image scaledLogo = logoIcon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        JLabel logoLabel = new JLabel(new ImageIcon(scaledLogo));
+        logoLabel.setBounds(730, 60, 80, 80); // Alineado a la derecha
+
+        // Agregar al panel
+        panel.add(title1);
+        panel.add(title2);
+        panel.add(subtitle);
+        panel.add(logoLabel);
     }
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
-        button.setBackground(new Color(0, 123, 255));
+        button.setBackground(new Color(4, 113, 166));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-        button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         return button;
     }
 
@@ -64,4 +83,29 @@ public class WelcomeView extends JFrame {
         loginButton.addActionListener(controller);
         registerButton.addActionListener(controller);
     }
+
+    private void addContentBox() {
+        RoundedPanel whiteBox = new RoundedPanel(30); // 30 píxeles de borde redondeado
+        whiteBox.setBackground(Color.WHITE); // Muy importante para que pinte blanco
+        whiteBox.setLayout(null);
+        whiteBox.setBounds(420, 250, 300, 200);
+        panel.add(whiteBox);
+    
+        JLabel welcomeMessage = new JLabel("¡Bienvenido! ¿Qué desea hacer?");
+        welcomeMessage.setFont(new Font("Sans Serif", Font.PLAIN, 18));
+        welcomeMessage.setBounds(20, 10, 280, 30);
+        welcomeMessage.setForeground(new Color(0, 51, 102));
+        whiteBox.add(welcomeMessage);
+    
+        loginButton = createStyledButton("Iniciar sesión");
+        loginButton.setBounds(60, 60, 180, 40);
+        whiteBox.add(loginButton);
+    
+        registerButton = createStyledButton("Registrarse");
+        registerButton.setBounds(60, 120, 180, 40);
+        whiteBox.add(registerButton);
+    }
+
+
+
 }
