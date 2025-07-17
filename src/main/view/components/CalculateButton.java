@@ -1,6 +1,6 @@
 package src.main.view.components;
 import java.awt.Color;
-
+//prueba
 @SuppressWarnings("serial")
 public class CalculateButton extends Button {
     public CalculateButton() {
