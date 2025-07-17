@@ -1,6 +1,7 @@
 package src.main.view.components;
 import java.awt.Color;
-//prueba hooolaaa
+//prueba hooolaaazzzz
+
 @SuppressWarnings("serial")
 public class CalculateCCBButton extends Button {
     public CalculateCCBButton() {
