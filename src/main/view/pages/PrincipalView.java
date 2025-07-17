@@ -43,7 +43,7 @@ public class PrincipalView extends JFrame {
     public void isAdmin () { addAdminButtons(); }
 
     public void userInfo(String user, String wallet) {
-        JLabel title = new JLabel("¡Bienvenido " + user + "!");
+        JLabel title = new JLabel("¡Bienvenido/a " + user + "!");
         title.setBounds(0, 10, 220, 30); 
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Sans Serif", Font.PLAIN, 20));
@@ -68,7 +68,7 @@ public class PrincipalView extends JFrame {
         separationPanel = new JPanel();
         separationPanel.setLayout(null);
         separationPanel.setBounds(0, 200, 220, 50); 
-        separationPanel.setBackground(new Color(4, 113, 166));
+        separationPanel.setBackground(new Color(40, 55, 71 ));
         JLabel title = new JLabel("APARTADOS");
         title.setBounds(0, 10, 220, 30); 
         title.setHorizontalAlignment(SwingConstants.CENTER);
