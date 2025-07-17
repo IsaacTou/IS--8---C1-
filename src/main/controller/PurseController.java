@@ -27,6 +27,10 @@ public class PurseController implements ActionListener {
 		if ("RECARGAR".equals(command)) {
 			String amount = purseView.getAmount();
 		}
+		if ("VOLVER".equals(command)) {
+			purseView.dispose();
+		}
+
 
 	}
 	public void reply(int messageId) {
