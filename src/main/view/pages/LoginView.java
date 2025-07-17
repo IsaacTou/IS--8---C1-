@@ -1,11 +1,10 @@
 package src.main.view.pages;
-import javax.swing.*;
 import java.awt.Font;
-import src.main.view.components.LoginButton;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 import src.main.view.components.BackButton;
 import src.main.view.components.ImagePanel;
-
-import java.awt.event.ActionListener;
+import src.main.view.components.LoginButton;
 
 @SuppressWarnings("serial")
 public class LoginView extends JFrame {
@@ -90,6 +89,7 @@ public class LoginView extends JFrame {
 
 	public void setController(ActionListener controller) {
 		loginButton.addActionListener(controller);
+		backButton.addActionListener(controller); 
 	}
 
 	public void confirm(String message) {

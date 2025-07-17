@@ -45,5 +45,22 @@ public class Navigate {
         ccbView.setVisible(true);
     }
 
+    public void initLoginView() {
+        LoginView login = new LoginView();
+        new LoginController(login);  
+        login.setVisible(true); 
+    }
+    
+    public void initRegisterView() {
+        RegisterView register = new RegisterView();
+        new RegisterController(register);  
+        register.setVisible(true);  
+    }
+    
+    public void initWelcomeView() {
+        WelcomeView welcomeView = new WelcomeView();
+        new WelcomeController(welcomeView);
+        welcomeView.setVisible(true);       
+    }
     
 }

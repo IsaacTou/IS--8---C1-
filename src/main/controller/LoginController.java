@@ -1,10 +1,9 @@
 package src.main.controller;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import src.main.view.pages.LoginView;
-import src.main.utils.*;
+import java.awt.event.ActionListener;
 import src.main.model.*;
+import src.main.utils.*;
+import src.main.view.pages.LoginView;
 
 public class LoginController implements ActionListener {
 
@@ -53,6 +52,12 @@ public class LoginController implements ActionListener {
 
 
 		}
+
+		else if ("VOLVER".equals(command)) {
+			login.dispose();  
+			Navigate.getInstance().initWelcomeView(); 
+		}
+
 
 	}
 

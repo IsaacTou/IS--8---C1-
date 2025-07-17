@@ -1,8 +1,8 @@
 package src.main.view.pages;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import src.main.view.components.*;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class RegisterView extends JFrame {
@@ -113,6 +113,7 @@ public class RegisterView extends JFrame {
 
 	public void setController(ActionListener controller) {
 		registerButton.addActionListener(controller);
+		backButton.addActionListener(controller);
 	}
 
 	public void confirm(String message) {

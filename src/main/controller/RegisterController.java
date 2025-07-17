@@ -1,9 +1,9 @@
 package src.main.controller;
-import src.main.view.pages.RegisterView;
-import src.main.model.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import src.main.model.*;
 import src.main.utils.*;
+import src.main.view.pages.RegisterView;
 
 public class RegisterController implements ActionListener {
 
@@ -12,7 +12,6 @@ public class RegisterController implements ActionListener {
     private UCVDataReader ucvLector;
     private SCUDataManager scuManager;
 
-    // INFORMACION (EVITANDO USAR NUMEROS MAGICOS)
     private final int CAMP_EMPTY = -1;
     private final int USER_TAKEN = 0;
     private final int CI_NOT_FOUND = 1;
@@ -65,6 +64,11 @@ public class RegisterController implements ActionListener {
                 }
             }
 
+        }
+
+        else if ("VOLVER".equals(command)) {
+            register.dispose(); 
+            Navigate.getInstance().initWelcomeView();  
         }
 
     }

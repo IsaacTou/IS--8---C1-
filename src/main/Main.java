@@ -4,6 +4,8 @@ import src.main.utils.*;
 
 public class Main {
     public static void main(String[] args) {
-        Navigate.getInstance().initRegister(); 
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            Navigate.getInstance().initWelcomeView(); 
+        });
     }
 }
