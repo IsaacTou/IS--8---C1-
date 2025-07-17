@@ -43,7 +43,7 @@ public class LoginController implements ActionListener {
 					SesionUser.getInstance().setSesionUser(sesionUser);
 					login.dispose();
 
-					Navigate.getInstance().initPrincipalView();
+					Navigate.getInstance().initPrincipal();
 				} else {
 					reply(WRONG_PASSWORD);
 				}

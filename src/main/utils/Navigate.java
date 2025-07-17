@@ -33,8 +33,9 @@ public class Navigate {
         purse.setVisible(true);
     }
 
-    public void initPrincipalView() {
+    public void initPrincipal() {
         PrincipalView view = new PrincipalView();
+        new PrincipalController(view);
         view.setVisible(true);
     }
 

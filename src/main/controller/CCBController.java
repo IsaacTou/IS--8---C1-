@@ -26,7 +26,7 @@ System.out.println("Merma: " + view.getPorcentajeMerma());
         } 
         else if ("VOLVER".equals(command)) {
             view.dispose();
-            Navigate.getInstance().initPrincipalView();
+            Navigate.getInstance().initPrincipal();
         }
     }
 }

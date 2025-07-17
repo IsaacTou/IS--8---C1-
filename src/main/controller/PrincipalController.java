@@ -18,8 +18,6 @@ public class PrincipalController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		String command = e.getActionCommand();
-		System.out.println("ESTA FUNCION NO SE EJECUTA NUNCA CARAJO");
-
 		if ("OPEN_WALLET".equals(command)) {
 			Navigate.getInstance().initPurse();
 		}
