@@ -16,7 +16,7 @@ public class PrincipalView extends JFrame {
     ImagePanel centerBackground;
     ConsumeButton consume;
     CheckMenuButton checkMenu;
-    CheckMenuButton checkPurse;
+    CheckPurseButton checkPurse;
 
 	int boxXPosition = 520;
 	int ciBoxYPosition = 230;
@@ -75,18 +75,19 @@ public class PrincipalView extends JFrame {
         consume.setFont(new Font("Arial", Font.BOLD, 14));
         centerPanel.add(consume);
     
-        checkPurse = new CheckMenuButton();              
-        checkPurse.setBounds(18, 250, 190, 50);      
-        panel.add(checkPurse);                            
+        checkPurse = new CheckPurseButton(); 
+        checkPurse.setBounds(18, 250, 190, 50);
+        panel.add(checkPurse);
     
         checkMenu = new CheckMenuButton();
         checkMenu.setBounds(18, 300, 190, 50);
         panel.add(checkMenu);
     }
 
-       public void setController(ActionListener controller) {
-               checkPurse.addActionListener(controller);
-       }
+    public void setController(ActionListener controller) {
+        checkPurse.addActionListener(controller);
+        checkMenu.addActionListener(controller);
+    }
 
     private void addAdminButtons() {
     CalculateCCBButton calculateCCBButton = new CalculateCCBButton();
