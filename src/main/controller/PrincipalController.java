@@ -12,6 +12,11 @@ public class PrincipalController implements ActionListener {
 	public PrincipalController(PrincipalView principalView) {
 		this.principalView = principalView;
 		this.principalView.setController((ActionListener) this);
+		principalView.userInfo(SesionUser.getInstance().getUser().getUser(),SesionUser.getInstance().getUser().getWallet());
+		if(SesionUser.getInstance().getUser() != null && 
+			SesionUser.getInstance().getUser().getUserType().equals("admin")) {
+			principalView.isAdmin();
+		}
 	}
 
 	@Override
@@ -20,6 +25,11 @@ public class PrincipalController implements ActionListener {
 		String command = e.getActionCommand();
 		if ("OPEN_WALLET".equals(command)) {
 			Navigate.getInstance().initPurse();
+		} else if ("LOGOUT".equals(command)) {
+			SesionUser.getInstance().logout();
+			principalView.dispose();
+			Navigate.getInstance().initWelcomeView();
+
 		}
 	}
 

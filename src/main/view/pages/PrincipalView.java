@@ -1,9 +1,9 @@
 package src.main.view.pages;
     
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import src.main.model.SesionUser;
 import src.main.utils.Navigate;
 import src.main.view.components.*;
 
@@ -11,12 +11,14 @@ import src.main.view.components.*;
 public class PrincipalView extends JFrame {
     
 	JPanel panel;
-    JPanel centerPanel;
+    JPanel separationPanel;
+    RoundedPanel centerPanel;
 	ImagePanel imageBackground;
     ImagePanel centerBackground;
     ConsumeButton consume;
     CheckMenuButton checkMenu;
     CheckPurseButton checkPurse;
+    LogoutButton logout;
 
 	int boxXPosition = 520;
 	int ciBoxYPosition = 230;
@@ -31,39 +33,63 @@ public class PrincipalView extends JFrame {
     setTitle("SGCU"); 
     setLocationRelativeTo(null);
     addPanel();
+    addSeparationPanel();
     addCenterPanel();
     addButtons();
     addImage();
 
-    // Verificar si es admin y mostrar botones adicionales
-    if(SesionUser.getInstance().getUser() != null && 
-       SesionUser.getInstance().getUser().getUserType().equals("admin")) {
-        addAdminButtons();
     }
-}
+
+    public void isAdmin () { addAdminButtons(); }
+
+    public void userInfo(String user, String wallet) {
+        JLabel title = new JLabel("¡Bienvenido " + user + "!");
+        title.setBounds(0, 10, 220, 30); 
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setFont(new Font("Sans Serif", Font.PLAIN, 20));
+        title.setForeground(new Color(0, 51, 102)); 
+        JLabel Wallet = new JLabel("Su saldo disponible es de: " + wallet);
+        Wallet.setBounds(0, 30, 220, 30); 
+        Wallet.setHorizontalAlignment(SwingConstants.CENTER);
+        Wallet.setFont(new Font("Sans Serif", Font.PLAIN, 15));
+        Wallet.setForeground(new Color(0, 51, 102));
+        panel.add(title); 
+        panel.add(Wallet);
+    }
 
 	private void addPanel() {
         panel = new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 220, 650); // Panel izquierdo
         this.getContentPane().add(panel);
-        JLabel title = new JLabel("APARTADOS:");
-	    title.setBounds(0, 0, 220, 350);
-	    title.setHorizontalAlignment(SwingConstants.CENTER);
-	    title.setFont(new Font("Sans Serif", Font.BOLD, 20));
-        panel.add(title);
+    }
+
+    private void addSeparationPanel() {
+        separationPanel = new JPanel();
+        separationPanel.setLayout(null);
+        separationPanel.setBounds(0, 200, 220, 50); 
+        separationPanel.setBackground(new Color(4, 113, 166));
+        JLabel title = new JLabel("APARTADOS");
+        title.setBounds(0, 10, 220, 30); 
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setFont(new Font("Sans Serif", Font.BOLD, 20));
+        title.setForeground(Color.WHITE); 
+        separationPanel.add(title); 
+        
+        panel.add(separationPanel);
     }
     
     private void addImage() {
-        imageBackground = new ImagePanel("principal_background.png",630, 650, 230, 0);
+        imageBackground = new ImagePanel("principal_background.png",850, 650, 230, 0);
         this.getContentPane().add(imageBackground);
     }
 
     private void addCenterPanel() {
-        centerPanel = new JPanel();
+        centerPanel = new RoundedPanel(30); 
+        centerPanel.setBackground(Color.WHITE); 
         centerPanel.setLayout(null);
-        centerPanel.setBounds(450, 200, 200, 250); 
-        centerBackground = new ImagePanel("user.png",100,100,50,50);
+        centerPanel.setBounds(420, 200, 200, 250);
+        centerBackground = new ImagePanel("user_icon.png",100,100,50,50);
         centerPanel.add(centerBackground);
 
         this.getContentPane().add(centerPanel);
@@ -71,22 +97,29 @@ public class PrincipalView extends JFrame {
 
     private void addButtons() {
         consume = new ConsumeButton();
-        consume.setBounds(40, 160, 120, 50);
+        consume.setBounds(40, 170, 120, 40);
         consume.setFont(new Font("Arial", Font.BOLD, 14));
         centerPanel.add(consume);
     
         checkPurse = new CheckPurseButton(); 
-        checkPurse.setBounds(18, 250, 190, 50);
+        checkPurse.setBounds(40, 60, 130, 25);
+        checkPurse.setFont(new Font("Arial", Font.BOLD, 18));
         panel.add(checkPurse);
     
         checkMenu = new CheckMenuButton();
         checkMenu.setBounds(18, 300, 190, 50);
         panel.add(checkMenu);
+
+        logout = new LogoutButton();
+        logout.setBounds(30, 110, 160, 50);
+        panel.add(logout);
+
     }
 
     public void setController(ActionListener controller) {
         checkPurse.addActionListener(controller);
         checkMenu.addActionListener(controller);
+        logout.addActionListener(controller);
     }
 
     private void addAdminButtons() {
