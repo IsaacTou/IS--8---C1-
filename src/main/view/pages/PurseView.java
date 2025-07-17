@@ -10,7 +10,7 @@ public class PurseView extends JFrame {
 
 	JPanel panel;
 	JPanel imageBackground;
-	Button reloadButton;
+	Button reloadButton, backButton;
 	int boxXPosition = 520;
 	int amountBoxYPosition = 265;
 	int bankBoxYPosition = 265 + 34;
@@ -93,7 +93,7 @@ public class PurseView extends JFrame {
 		panel.add(reloadButton);
 
 		int xPosition = 450;
-		Button backButton = new BackButton();
+		backButton = new BackButton();
 		backButton.setBounds(xPosition, 410, 127, 28);
 		panel.add(backButton);
 	}
@@ -104,6 +104,7 @@ public class PurseView extends JFrame {
 
 	public void setController(ActionListener controller) {
 		reloadButton.addActionListener(controller);
+		backButton.addActionListener(controller);
 	}
 
 	public void confirm(String message) {
