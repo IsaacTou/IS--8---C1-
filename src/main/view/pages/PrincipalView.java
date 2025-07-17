@@ -1,11 +1,11 @@
 package src.main.view.pages;
     
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import src.main.model.SesionUser;
 import src.main.utils.Navigate;
 import src.main.view.components.*;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class PrincipalView extends JFrame {
@@ -62,9 +62,7 @@ public class PrincipalView extends JFrame {
     private void addCenterPanel() {
         centerPanel = new JPanel();
         centerPanel.setLayout(null);
-        centerPanel.setBounds(450, 200, 200, 250); // Posición y tamaño del panel central
-
-        // Imagen pequeña dentro del panel central
+        centerPanel.setBounds(450, 200, 200, 250); 
         centerBackground = new ImagePanel("user.png",100,100,50,50);
         centerPanel.add(centerBackground);
 
@@ -76,16 +74,19 @@ public class PrincipalView extends JFrame {
         consume.setBounds(40, 160, 120, 50);
         consume.setFont(new Font("Arial", Font.BOLD, 14));
         centerPanel.add(consume);
-
+    
+        checkPurse = new CheckMenuButton();              
+        checkPurse.setBounds(18, 250, 190, 50);      
+        panel.add(checkPurse);                            
+    
         checkMenu = new CheckMenuButton();
-        checkMenu.setBounds(18,300,190,50);
+        checkMenu.setBounds(18, 300, 190, 50);
         panel.add(checkMenu);
     }
 
        public void setController(ActionListener controller) {
                checkPurse.addActionListener(controller);
        }
-
 
     private void addAdminButtons() {
     CalculateCCBButton calculateCCBButton = new CalculateCCBButton();
