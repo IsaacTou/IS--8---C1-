@@ -173,9 +173,7 @@ public class CCBView extends JFrame {
 
     private BackButton createStyledBackButton(int x, int y, int width, int height) {
         BackButton button = new BackButton();
-        button.setText("Volver");
         button.setBounds(x, y, width, height);
-        button.setBackground(new Color(4, 113, 166));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(new Font("Sans Serif", Font.BOLD, 16));
