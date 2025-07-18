@@ -1,7 +1,8 @@
 // src/test/java/src/main/model/SesionUserTest.java
 package src.test;
 
-import src.main.model.*;
+import src.main.model.SesionUser;
+import src.main.model.User;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

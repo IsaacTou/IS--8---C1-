@@ -10,6 +10,13 @@ public class UCVDataReader {
     private static int IDENTIFICATION_ID = 0;
     private static int UCV_USER_TYPE = 1;
 
+    //Constructor para pruebas UNITARIAS
+    public UCVDataReader (String ruteString) {
+        this.ruteString = ruteString;
+        this.userType = "";
+    }
+
+
     public UCVDataReader () {
         ruteString = "src/main/data/UCVDataBase.txt";
         userType = "";
