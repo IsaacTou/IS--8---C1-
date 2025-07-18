@@ -1,9 +1,7 @@
 31065844,Estudiante
 31789143,Profesor
 30967178,admin
-99999999,Estudiante
-88888888,Profesor
-33333333,admin
-44444444,admin
-55555555,admin
-111,admin
+12356871,Empleado
+500123,Estudiante
+109999,Profesor
+

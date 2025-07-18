@@ -32,23 +32,5 @@ public class PurseController implements ActionListener {
 			purseView.dispose();
 		}
 	}
-
-	public void reply(int messageId) {
-		switch (messageId) {
-			case USER_TAKEN:
-			purseView.warning("Este nombre de usuario ya se encuentra ocupado, por favor intente otro.");
-			break;
-			case CI_NOT_FOUND:
-			purseView.warning("Usted no se encuentra en el registro UCV, por favor visite secretaria.");
-			break;
-			case ALREADY_REGISTER:
-			purseView.warning("Usted ya se encuentra registrado en el sistema.");
-			break;
-			case SUCCESS_OP:
-			purseView.confirm("El registro ha sido exitoso");
-			break;
-			default:
-			break;
-		}
-	}
+	
 }

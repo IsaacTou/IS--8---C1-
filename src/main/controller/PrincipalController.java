@@ -22,20 +22,17 @@ public class PrincipalController implements ActionListener {
 	}
 
 	@Override
-public void actionPerformed(ActionEvent e) {
-    String command = e.getActionCommand();
-    if ("OPEN_WALLET".equals(command)) {
-        Navigate.getInstance().initPurse();
-    } else if ("LOGOUT".equals(command)) {
-        SesionUser.getInstance().logout();
-        principalView.dispose();
-        Navigate.getInstance().initWelcomeView();
-    } else if ("CONSULTAR_MENUS".equals(command)) { // Añadir este caso
-        Navigate.getInstance().initMenuView(); // Redirigir a MenuView
-    }
-}
-
-	public void reply(int messageId) {
-
+	public void actionPerformed(ActionEvent e) {
+    	String command = e.getActionCommand();
+    	if ("OPEN_WALLET".equals(command)) {
+        	Navigate.getInstance().initPurse();
+    	} else if ("LOGOUT".equals(command)) {
+        	SesionUser.getInstance().logout();
+        	principalView.dispose();
+        	Navigate.getInstance().initWelcomeView();
+    	} else if ("CONSULTAR_MENUS".equals(command)) { // Añadir este caso
+        	Navigate.getInstance().initMenuView(); // Redirigir a MenuView
+   		}
 	}
+	
 }

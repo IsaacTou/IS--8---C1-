@@ -27,7 +27,6 @@ class UCVDataReaderTest {
             writer.write("98765432,Admin\n");
         }
 
-        // Inicializar UCVDataReader con la ruta del archivo temporal
         reader = new UCVDataReader(tempDbFile.getAbsolutePath());
     }
     
