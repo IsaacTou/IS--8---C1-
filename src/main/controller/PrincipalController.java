@@ -11,6 +11,8 @@ public class PrincipalController implements ActionListener {
 
 	public PrincipalController(PrincipalView principalView) {
 		this.principalView = principalView;
+	}
+	public void initialize() {
 		this.principalView.setController((ActionListener) this);
 		principalView.userInfo(SesionUser.getInstance().getUser().getUser(),SesionUser.getInstance().getUser().getWallet());
 		if(SesionUser.getInstance().getUser() != null && 
