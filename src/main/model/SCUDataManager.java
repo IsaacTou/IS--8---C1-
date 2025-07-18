@@ -21,6 +21,11 @@ public class SCUDataManager {
         loginTarget = "";
     }
 
+    public SCUDataManager(String r) {
+        ruteString = r;
+        loginTarget = "";
+    }
+
     public void createAccount (String cI, String user, String userType, String key) {
         File file = new File(ruteString);
         boolean isEmpty = (file.length() == 0);
