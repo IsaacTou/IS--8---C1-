@@ -108,6 +108,7 @@ public class PrincipalView extends JFrame {
     
         checkMenu = new CheckMenuButton();
         checkMenu.setBounds(18, 300, 190, 50);
+        checkMenu.setActionCommand("CONSULTAR_MENUS"); // Asegurar este comando
         panel.add(checkMenu);
 
         logout = new LogoutButton();

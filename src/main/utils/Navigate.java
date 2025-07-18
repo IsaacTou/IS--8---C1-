@@ -62,4 +62,8 @@ public class Navigate {
 		new WelcomeController(welcomeView).initialize();
 		welcomeView.setVisible(true);       
 	}
+	public void initMenuView() {
+		MenuView menuView = new MenuView();
+		menuView.setVisible(true);
+	}
 }

@@ -1,9 +1,9 @@
 package src.main.controller;
-import src.main.view.pages.*;
-import src.main.model.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import src.main.model.*;
 import src.main.utils.*;
+import src.main.view.pages.*;
 
 public class PrincipalController implements ActionListener {
 
@@ -22,18 +22,18 @@ public class PrincipalController implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		String command = e.getActionCommand();
-		if ("OPEN_WALLET".equals(command)) {
-			Navigate.getInstance().initPurse();
-		} else if ("LOGOUT".equals(command)) {
-			SesionUser.getInstance().logout();
-			principalView.dispose();
-			Navigate.getInstance().initWelcomeView();
-
-		}
-	}
+public void actionPerformed(ActionEvent e) {
+    String command = e.getActionCommand();
+    if ("OPEN_WALLET".equals(command)) {
+        Navigate.getInstance().initPurse();
+    } else if ("LOGOUT".equals(command)) {
+        SesionUser.getInstance().logout();
+        principalView.dispose();
+        Navigate.getInstance().initWelcomeView();
+    } else if ("CONSULTAR_MENUS".equals(command)) { // Añadir este caso
+        Navigate.getInstance().initMenuView(); // Redirigir a MenuView
+    }
+}
 
 	public void reply(int messageId) {
 
