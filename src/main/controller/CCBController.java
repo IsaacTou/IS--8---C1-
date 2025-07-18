@@ -6,27 +6,29 @@ import src.main.view.pages.CCBView;
 
 public class CCBController implements ActionListener {
 
-    private CCBView view;
+	private CCBView view;
 
-    public CCBController(CCBView view) {
-        this.view = view;
-        this.view.setController(this);
-    }
+	public CCBController(CCBView view) {
+		this.view = view;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-        
-        if ("CALCULAR".equals(command)) {
-           
-            System.out.println("Costos Fijos: " + view.getCostosFijos());
-System.out.println("Costos Variables: " + view.getCostosVariables());
-System.out.println("Número de bandejas: " + view.getNumeroBandejas()); 
-System.out.println("Merma: " + view.getPorcentajeMerma());
-        } 
-        else if ("VOLVER".equals(command)) {
-            view.dispose();
-            Navigate.getInstance().initPrincipal();
-        }
-    }
+	public void initialize() {
+		this.view.setController(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+
+		if ("CALCULAR".equals(command)) {
+			System.out.println("Costos Fijos: " + view.getCostosFijos());
+			System.out.println("Costos Variables: " + view.getCostosVariables());
+			System.out.println("Número de bandejas: " + view.getNumeroBandejas()); 
+			System.out.println("Merma: " + view.getPorcentajeMerma());
+		} 
+		else if ("VOLVER".equals(command)) {
+			view.dispose();
+			Navigate.getInstance().initPrincipal();
+		}
+	}
 }
