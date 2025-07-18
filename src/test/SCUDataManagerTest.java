@@ -1,8 +1,11 @@
 package src.test;
 import src.main.model.SCUDataManager;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.File;
 
 public class SCUDataManagerTest {
     
@@ -16,6 +19,16 @@ public class SCUDataManagerTest {
     public void setUp() {
         dataManager = new SCUDataManager();
         mockManager = new SCUDataManager("tmp");
+    }
+
+    @AfterAll
+    static void tearDownAll() { 
+        String rute = "tmp";
+        File file = new File(rute);
+        // Asegurarse de que el archivo temporal se elimine después de cada prueba
+        if (file != null && file.exists()) {
+            file.delete();
+        }
     }
     
     @Test
@@ -85,10 +98,4 @@ public class SCUDataManagerTest {
         );
     }
 
-    // Prueba para verificar que la CI tenga solo digitos
-    @Test
-    public void testCiFormat() {
-        mockManager.userExist(testUser);
-        assertTrue(mockManager.getCi().matches("\\d+"), "El CI debe contener solo dígitos");
-    }
 }

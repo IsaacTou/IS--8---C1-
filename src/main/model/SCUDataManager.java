@@ -20,7 +20,7 @@ public class SCUDataManager {
         ruteString = "src/main/data/SCUDataBase.txt";
         loginTarget = "";
     }
-
+    //PRUEBA UNITARIA
     public SCUDataManager(String r) {
         ruteString = r;
         loginTarget = "";
