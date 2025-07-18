@@ -16,6 +16,9 @@ public class PurseController implements ActionListener {
 
 	public PurseController(PurseView purseView) {
 		this.purseView = purseView;
+	}
+
+	public void initialize() {
 		this.purseView.setController((ActionListener) this);
 	}
 
@@ -30,9 +33,8 @@ public class PurseController implements ActionListener {
 		if ("VOLVER".equals(command)) {
 			purseView.dispose();
 		}
-
-
 	}
+
 	public void reply(int messageId) {
 		switch (messageId) {
 			case USER_TAKEN:
@@ -51,5 +53,4 @@ public class PurseController implements ActionListener {
 			break;
 		}
 	}
-
 }
