@@ -18,7 +18,7 @@ class UCVDataReaderTest {
     private File tempDbFile; // Archivo temporal para la base de datos de prueba
 
     @BeforeEach
-    void setUp() throws IOException {
+    public void setUp() throws IOException {
         // Crear un archivo temporal con datos de prueba CONTROLADOS
         tempDbFile = File.createTempFile("UCVTestDB", ".txt");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempDbFile))) {
@@ -30,9 +30,10 @@ class UCVDataReaderTest {
         // Inicializar UCVDataReader con la ruta del archivo temporal
         reader = new UCVDataReader(tempDbFile.getAbsolutePath());
     }
+    
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         // Asegurarse de que el archivo temporal se elimine después de cada prueba
         if (tempDbFile != null && tempDbFile.exists()) {
             tempDbFile.delete();
@@ -41,7 +42,7 @@ class UCVDataReaderTest {
 
     @Test
     @DisplayName("Debe devolver true si la CI existe y establecer el tipo de usuario correcto")
-    void testFindCi_TrueAndGetUserType() {
+    public void testFindCi_TrueAndGetUserType() {
         // Prueba 1: CI existente y tipo esperado "Estudiante"
         String ciExistente1 = "31065844";
         assertTrue(reader.findCi(ciExistente1), "La CI '" + ciExistente1 + "' debería existir.");
@@ -60,7 +61,7 @@ class UCVDataReaderTest {
 
     @Test
     @DisplayName("Debe devolver false si la CI NO existe y userType debe estar vacío")
-    void testFindCi_FalseAndGetUserTypeEmpty() {
+    public void testFindCi_FalseAndGetUserTypeEmpty() {
         String ciNoExistente = "99999999";
         assertFalse(reader.findCi(ciNoExistente), "La CI '" + ciNoExistente + "' no debería existir.");
         assertEquals("", reader.getUserType(), "El userType debería ser una cadena vacía para una CI no existente.");
@@ -68,7 +69,7 @@ class UCVDataReaderTest {
 
     @Test
     @DisplayName("Debe manejar CI vacía o nula, devolviendo false y userType vacío")
-    void testFindCi_EmptyOrNullCi() {
+    public void testFindCi_EmptyOrNullCi() {
         // Probar con CI vacía
         assertFalse(reader.findCi(""), "Buscar CI vacía debería devolver false.");
         assertEquals("", reader.getUserType(), "El userType debería estar vacío para CI vacía.");
