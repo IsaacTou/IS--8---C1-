@@ -17,8 +17,11 @@ public class LoginController implements ActionListener {
 
 	public LoginController(LoginView login) {
 		this.login = login;
-		this.login.setController((ActionListener) this);
 	} 
+
+	public void initialize() {
+		this.login.setController((ActionListener) this);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
