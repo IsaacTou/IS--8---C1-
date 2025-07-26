@@ -1,0 +1,3 @@
+Cena|6:30 PM - 8:30 PM|180.00 Bs|Crema de verdurasX,Sándwich mixto,Yogur,Té o café|dinner.png
+Almuerzo|12:00 PM - 2:30 PM|180.00 Bs|Sopa del día,Ensalada,Jugo de Naranja,Pan|lunch.png
+Desayuno|7:00 AM - 9:30 AM|180.00 Bs|Café con leche,Tostadas con huevo,Jugo de naranja,Fruta fresca|breakfast.png
