@@ -1,11 +1,8 @@
 package src.main.view.pages;
 
-
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.*;
-import src.main.utils.FileUtils;
 import src.main.view.components.*;
 
 @SuppressWarnings("serial")
@@ -93,31 +90,7 @@ public class CCBView extends JFrame {
         saveButton = createStyledButton("Guardar Datos", buttonX, yPos, buttonWidth, buttonHeight);
         yPos += 60;
 
-        saveButton.addActionListener(e -> {
-    try {
-        String costosFijos = cfTxt.getText().trim();
-        String costosVariables = cvTxt.getText().trim();
-        String cantidadBandejas = nbTxt.getText().trim();
-        String porcentajeMerma = mermaTxt.getText().trim();
-
-        if (costosFijos.isEmpty() || costosVariables.isEmpty() || 
-            cantidadBandejas.isEmpty() || porcentajeMerma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, rellene todos los campos.");
-            return;
-        }
-
-        String datos = costosFijos + "," + costosVariables + "," + cantidadBandejas + "," + porcentajeMerma;
-
-        FileUtils.guardarDatos("src/main/data/CCBData.txt", datos);
-
-        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
-
-    } catch (IOException ex) {
-        JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + ex.getMessage());
-    }
-});
-
-
+        saveButton.setActionCommand("GUARDAR DATOS");
 
         calculateButton = createStyledCalculateButton(buttonX, yPos, buttonWidth, buttonHeight);
         yPos += 60;
