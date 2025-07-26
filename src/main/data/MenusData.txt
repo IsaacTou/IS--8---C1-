@@ -1,2 +1,2 @@
-Almuerzo|12:00 PM - 2:30 PM|180.00 Bs|noise,NOSE,NOSE,NO SE,,0|527a53a069c05d7c.png
-Desayuno|7:00 AM - 9:30 AM|180.00 Bs|Café con leche,Tostadas con huevo,Jugo de naranja,Fruta fresca|bowl.png
+Almuerzo|12:00 PM - 2:30 PM|180.00 Bs|hola,NO SE,NOSE,0,ND,F|527a53a069c05d7c.png
+Desayuno|7:00 AM - 9:30 AM|180.00 Bs|Café con leche,Tostadas con huevo,Jugo de naranja,Fruta fresca,1|bowl.png

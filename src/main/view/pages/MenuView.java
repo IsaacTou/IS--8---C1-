@@ -223,11 +223,6 @@ public class MenuView extends JFrame {
 
         JPanel formPanel = new JPanel(new GridLayout(5, 1, 10, 10));
         formPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-
-     
-        JTextField titleField = new JTextField(currentTitle);
-        formPanel.add(createLabeledField("Nombre del menú:", titleField));
-
         
         JTextField timeField = new JTextField(timeRange);
         formPanel.add(createLabeledField("Horario:", timeField));
@@ -268,7 +263,7 @@ public class MenuView extends JFrame {
         JButton cancelButton = new JButton("Cancelar");
 
         saveButton.addActionListener(e -> {
-            newTitle[0] = titleField.getText();
+            newTitle[0] = currentTitle;
             newTime[0] = timeField.getText();
             newItems[0] = itemsArea.getText().split("\n");
         
