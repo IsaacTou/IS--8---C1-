@@ -125,7 +125,7 @@ public class MenuView extends JFrame {
         if (isAdmin) {
             JButton editButton = new JButton("Editar " + title);
             editButton.addActionListener(e -> {
-                // Usar variables final para la lambda
+             
                 final String[] finalItems = items;
                 final String finalTimeRange = timeRange;
                 final String finalPrice = price;
@@ -208,7 +208,6 @@ public class MenuView extends JFrame {
         editDialog.setSize(500, 500);
         editDialog.setLocationRelativeTo(this);
 
-        // Usar contenedores para variables modificables
         final String[] newImageName = {imageName};
         final String[] newTitle = {currentTitle};
         final String[] newTime = {timeRange};
@@ -217,20 +216,20 @@ public class MenuView extends JFrame {
         JPanel formPanel = new JPanel(new GridLayout(5, 1, 10, 10));
         formPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        // Campo para el nombre del menú
+     
         JTextField titleField = new JTextField(currentTitle);
         formPanel.add(createLabeledField("Nombre del menú:", titleField));
 
-        // Campo para el horario
+        
         JTextField timeField = new JTextField(timeRange);
         formPanel.add(createLabeledField("Horario:", timeField));
 
-        // Área para los items
+     
         JTextArea itemsArea = new JTextArea(String.join("\n", items), 5, 20);
         itemsArea.setLineWrap(true);
         formPanel.add(createLabeledField("Items (uno por línea):", new JScrollPane(itemsArea)));
 
-        // Selector de imagen
+      
         JPanel imagePanel = new JPanel(new BorderLayout());
         JLabel currentImageLabel = new JLabel("Imagen actual: " + newImageName[0]);
         JButton changeImageBtn = new JButton("Cambiar Imagen");
@@ -255,7 +254,7 @@ public class MenuView extends JFrame {
         imagePanel.add(changeImageBtn, BorderLayout.SOUTH);
         formPanel.add(imagePanel);
 
-        // Botones
+     
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         JButton saveButton = new JButton("Guardar Cambios");
         JButton cancelButton = new JButton("Cancelar");
@@ -264,14 +263,13 @@ public class MenuView extends JFrame {
             newTitle[0] = titleField.getText();
             newTime[0] = timeField.getText();
             newItems[0] = itemsArea.getText().split("\n");
-            
-            // Actualizar el mapa de datos
+        
             if (!newTitle[0].equals(currentTitle)) {
                 menusData.remove(currentTitle);
             }
             menusData.put(newTitle[0], new MenuData(newItems[0], newTime[0], price, newImageName[0]));
             
-            // Actualizar la vista
+       
             tabbedPane.removeAll();
             for (Map.Entry<String, MenuData> entry : menusData.entrySet()) {
                 MenuData data = entry.getValue();
