@@ -47,6 +47,7 @@ public class RegisterController implements ActionListener {
 			boolean isCiFind = ucvLector.findCi(ci); 
 			String userType = ucvLector.getUserType();
 
+			// Se busca si la CEDULA existe para registar
 			if (!isCiFind) {
 
 				reply(CI_NOT_FOUND);            
@@ -54,13 +55,16 @@ public class RegisterController implements ActionListener {
 			} else {
 
 				int reply = scuManager.invalidOperation(ci, user);
+				// Si todo esta en orden, la respuesta será igual a SUCCESS_OP
 				if(reply == SUCCESS_OP) {  
+					
 					scuManager.createAccount(ci,user,userType,key);
 					reply(SUCCESS_OP);
 					register.dispose();
 					Navigate.getInstance().initLogin();
 
 				} else {
+
 					reply(reply);
 				}
 			}

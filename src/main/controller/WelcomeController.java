@@ -21,13 +21,13 @@ public class WelcomeController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 			case "GO_TO_LOGIN":
-			view.dispose();
-			Navigate.getInstance().initLoginView();
-			break;
+				view.dispose();
+				Navigate.getInstance().initLoginView();
+				break;
 			case "GO_TO_REGISTER":
-			view.dispose();
-			Navigate.getInstance().initRegisterView();
-			break;
+				view.dispose();
+				Navigate.getInstance().initRegisterView();
+				break;
 		}
 	}
 }
