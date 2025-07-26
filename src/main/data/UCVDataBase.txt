@@ -4,4 +4,6 @@
 12356871,Empleado
 500123,Estudiante
 109999,Profesor
+4,admin
+5,Estudiante
 

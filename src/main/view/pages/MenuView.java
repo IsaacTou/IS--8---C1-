@@ -75,33 +75,41 @@ public class MenuView extends JFrame {
     }
 
     private void loadMenus() {
-        menusData.put("Desayuno", new MenuData(
-            new String[]{"Café con leche", "Tostadas con huevo", "Jugo de naranja", "Fruta fresca"},
-            "7:00 AM - 9:30 AM",
-            "180.00 Bs",
-            "breakfast.png"
-        ));
-        
-        menusData.put("Almuerzo", new MenuData(
-            new String[]{"Sopa del día", "Ensalada", "Jugo de Naranja", "Pan"},
-            "12:00 PM - 2:30 PM",
-            "180.00 Bs",
-            "lunch.png"
-        ));
-        
-        menusData.put("Cena", new MenuData(
-            new String[]{"Crema de verduras", "Sándwich mixto", "Yogur", "Té o café"},
-            "6:30 PM - 8:30 PM",
-            "180.00 Bs",
-            "dinner.png"
-        ));
-        
-        // Cargar los menús desde el mapa
+        menusData.clear();  // Limpia datos anteriores
+        File file = new File("src/main/data/MenusData.txt");
+    
+        if (!file.exists()) {
+            JOptionPane.showMessageDialog(this, "El archivo de menús no existe. Se cargará vacío.");
+            return;
+        }
+    
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Formato: Titulo|Horario|Precio|item1,item2,item3|imagen.png
+                String[] parts = line.split("\\|");
+                if (parts.length != 5) continue; // línea inválida
+    
+                String title = parts[0];
+                String timeRange = parts[1];
+                String price = parts[2];
+                String[] items = parts[3].split(",");
+                String imageName = parts[4];
+    
+                menusData.put(title, new MenuData(items, timeRange, price, imageName));
+            }
+    
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al leer los menús: " + e.getMessage());
+        }
+    
+        // Mostrar en la interfaz
         for (Map.Entry<String, MenuData> entry : menusData.entrySet()) {
             MenuData data = entry.getValue();
             addMenuTab(entry.getKey(), data.items, data.timeRange, data.price, data.imageName);
         }
     }
+    
 
     private void saveMenusToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/data/MenusData.txt"))) {
