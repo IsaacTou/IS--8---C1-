@@ -21,7 +21,7 @@ public class MenuViewController implements ActionListener {
         MenuData.getInstance().loadMenus();
 
         //Cargar los MENU en la vista con los datos del modelo
-              
+
         for (Map.Entry<String, Menu> entry : MenuData.getInstance().getMenusData().entrySet()) {
             Menu data = entry.getValue();
             menuView.addMenuTab(
@@ -63,11 +63,10 @@ public class MenuViewController implements ActionListener {
                 String[] newItems = editMenuDialog.getItems();
                 String newImageName = editMenuDialog.getImageName();
 
-                // Guarda los datos ANTES de eliminar
                 Menu oldMenu = MenuData.getInstance().getMenusData().get(editingMenuTitle);
                 String oldPrice = oldMenu != null ? oldMenu.getDataPrice() : "";
 
-                // Si el título cambió, elimina el anterior
+
                 if (!newTitle.equals(editingMenuTitle)) {
                     MenuData.getInstance().getMenusData().remove(editingMenuTitle);
                 }
@@ -86,7 +85,7 @@ public class MenuViewController implements ActionListener {
                     
                 }
 
-                menuView.setController(this); // Vuelve a asignar el controlador a los nuevos botones
+                menuView.setController(this); 
                 MenuData.getInstance().saveMenusToFile();
                 editMenuDialog.reply();
                 editMenuDialog.setVisible(false);

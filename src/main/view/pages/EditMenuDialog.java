@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 
-public class EditMenuDialog extends JDialog { // Cambia JFrame por JDialog
+public class EditMenuDialog extends JDialog { 
 
     private JTextField titleField;
     private JTextField timeField;
