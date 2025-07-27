@@ -2,6 +2,9 @@ package src.main.controller;
 import src.main.view.pages.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import src.main.model.*;
+import src.main.utils.*;
 
 public class PurseController implements ActionListener {
 
@@ -18,6 +21,9 @@ public class PurseController implements ActionListener {
 
 	public void initialize() {
 		this.purseView.setController((ActionListener) this);
+		purseView.addTitle(
+			SesionUser.getInstance().getUser().getWallet()
+		);
 	}
 
 	@Override
@@ -27,10 +33,40 @@ public class PurseController implements ActionListener {
 
 		if ("RECARGAR".equals(command)) {
 			String amount = purseView.getAmount();
+			String code = purseView.getCode();
+
+			if (code.length() == 0 || amount.length() == 0) {
+				JOptionPane.showMessageDialog(purseView, "Debe rellenar todos los campos");
+				return;
+			}
+			try {
+				Float.parseFloat(amount);
+			}
+			catch (NumberFormatException x) {
+				JOptionPane.showMessageDialog(purseView, "La cantidad a recargar debe ser numérica");
+				return;
+			}
+			try {
+				Integer.parseInt(code);
+			}
+			catch (NumberFormatException x) {
+				JOptionPane.showMessageDialog(purseView, "El código debe ser numérico");
+				return;
+			}
+
+			if (code.length() != 4) {
+				JOptionPane.showMessageDialog(purseView, "El código debe ser de 4 dígitos");
+				return;
+			}
+			if (SesionUser.getInstance().setWallet(amount) == 0) {
+				JOptionPane.showMessageDialog(purseView, "Se hizo la recarga de manera exitosa");
+			}
+			else {
+				JOptionPane.showMessageDialog(purseView, "Hubo un error al tratar de recargar el saldo");
+			}
 		}
 		if ("VOLVER".equals(command)) {
 			purseView.dispose();
 		}
 	}
-	
 }
