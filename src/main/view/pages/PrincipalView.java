@@ -19,6 +19,7 @@ public class PrincipalView extends JFrame {
 	CheckMenuButton checkMenu;
 	CheckPurseButton checkPurse;
 	LogoutButton logout;
+	JLabel walletLabel;
 
 	int boxXPosition = 520;
 	int ciBoxYPosition = 230;
@@ -46,13 +47,17 @@ public class PrincipalView extends JFrame {
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setFont(new Font("Sans Serif", Font.PLAIN, 20));
 		title.setForeground(new Color(0, 51, 102)); 
-		JLabel Wallet = new JLabel("Su saldo disponible es de: " + wallet);
-		Wallet.setBounds(0, 30, 220, 30); 
-		Wallet.setHorizontalAlignment(SwingConstants.CENTER);
-		Wallet.setFont(new Font("Sans Serif", Font.PLAIN, 15));
-		Wallet.setForeground(new Color(0, 51, 102));
+		walletLabel = new JLabel("Su saldo disponible es de: " + wallet);
+		walletLabel.setBounds(0, 30, 220, 30); 
+		walletLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		walletLabel.setFont(new Font("Sans Serif", Font.PLAIN, 15));
+		walletLabel.setForeground(new Color(0, 51, 102));
 		panel.add(title); 
-		panel.add(Wallet);
+		panel.add(walletLabel);
+	}
+
+	public void refreshBalance(String wallet) {
+		walletLabel.setText("Su saldo disponible es de: " + wallet);
 	}
 
 	private void addPanel() {

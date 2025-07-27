@@ -12,6 +12,7 @@ public class PurseView extends JFrame {
 	BackButton backButton;
 	JTextField amountBox, codeBox;
 	JComboBox bankBox;
+	JLabel balanceLabel;
 
 	private final int IMAGE_WIDTH = 320;
 	private final int FORM_WIDTH = 350;
@@ -45,11 +46,14 @@ public class PurseView extends JFrame {
 		title.setForeground(new Color(51, 51, 51));
 		panel.add(title);
 
-		JLabel balanceLabel = new JLabel("Saldo Actual: " + balance + "Bs");
+		balanceLabel = new JLabel("Saldo Actual: " + balance + "Bs");
 		balanceLabel.setBounds(titleX, 120 + 24, titleWidth, 40);
 		balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		balanceLabel.setFont(new Font("Sans Serif", Font.PLAIN, 16));
 		panel.add(balanceLabel);
+	}
+	public void refreshTitle(String balance) {
+		balanceLabel.setText("Saldo Actual: " + balance + "Bs");
 	}
 
 	private void addFormContainer() {
