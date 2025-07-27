@@ -9,14 +9,16 @@ import src.main.utils.*;
 public class PurseController implements ActionListener {
 
 	private PurseView purseView;
+	private PrincipalView principalView;
 
 	private final int USER_TAKEN = 0;
 	private final int CI_NOT_FOUND = 1;
 	private final int ALREADY_REGISTER = 2;
 	private final int SUCCESS_OP = 3;
 
-	public PurseController(PurseView purseView) {
+	public PurseController(PurseView purseView, PrincipalView principalView) {
 		this.purseView = purseView;
+		this.principalView = principalView;
 	}
 
 	public void initialize() {
@@ -60,6 +62,8 @@ public class PurseController implements ActionListener {
 			}
 			if (SesionUser.getInstance().setWallet(amount) == 0) {
 				JOptionPane.showMessageDialog(purseView, "Se hizo la recarga de manera exitosa");
+				purseView.refreshTitle(SesionUser.getInstance().getUser().getWallet());
+				principalView.refreshBalance(SesionUser.getInstance().getUser().getWallet());
 			}
 			else {
 				JOptionPane.showMessageDialog(purseView, "Hubo un error al tratar de recargar el saldo");
