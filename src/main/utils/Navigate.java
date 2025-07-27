@@ -64,6 +64,7 @@ public class Navigate {
 	}
 	public void initMenuView() {
 		MenuView menuView = new MenuView();
+		new MenuViewController(menuView).initialize();;
 		menuView.setVisible(true);
 	}
 }

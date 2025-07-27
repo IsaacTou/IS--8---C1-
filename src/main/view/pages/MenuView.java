@@ -1,18 +1,26 @@
 package src.main.view.pages;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+
 import src.main.view.components.*;
 
 @SuppressWarnings("serial")
 public class MenuView extends JFrame {
     
-    
     private final Color PANEL_BG = new Color(4, 113, 166); 
     private final Color CONTENT_BG = new Color(240, 240, 240); 
     private final Color INFO_BG = new Color(220, 220, 220); 
+    private BackButton backButton;
     
+    public JTabbedPane tabbedPane;
+    public List<JButton> editButtons = new ArrayList<>();
+
+   
     public MenuView() {
         setSize(850, 650);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -26,44 +34,21 @@ public class MenuView extends JFrame {
         mainPanel.setBackground(PANEL_BG);
         getContentPane().add(mainPanel);
 
-        
         JLabel mainTitle = new JLabel("MENÚS DEL DÍA", SwingConstants.CENTER);
         mainTitle.setFont(new Font("Sans Serif", Font.BOLD, 28));
         mainTitle.setForeground(Color.WHITE);
         mainTitle.setBorder(new EmptyBorder(15, 0, 15, 0));
         mainPanel.add(mainTitle, BorderLayout.NORTH);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Sans Serif", Font.BOLD, 16));
         tabbedPane.setBackground(new Color(3, 93, 146));
         tabbedPane.setForeground(Color.WHITE);
-        
-        tabbedPane.addTab("Desayuno", createMenuPanel(
-            new String[]{"Café con leche", "Tostadas con huevo", "Jugo de naranja", "Fruta fresca"},
-            "7:00 AM - 9:30 AM",
-            "180.00 Bs",
-            "breakfast.png"
-        ));
-        
-        tabbedPane.addTab("Almuerzo", createMenuPanel(
-            new String[]{"Sopa del día", "Ensalada", "Jugo de Naranja", "Pan"},
-            "12:00 PM - 2:30 PM",
-            "180.00 Bs",
-            "lunch.png"
-        ));
-    
-        tabbedPane.addTab("Cena", createMenuPanel(
-            new String[]{"Crema de verduras", "Sándwich mixto", "Yogur", "Té o café"},
-            "6:30 PM - 8:30 PM",
-            "180.00 Bs",
-            "dinner.png"
-        ));
 
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
 
-        BackButton backButton = new BackButton();
+        backButton = new BackButton();
         backButton.setPreferredSize(new Dimension(150, 40));
-        backButton.addActionListener(e -> dispose());
         
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(PANEL_BG);
@@ -71,13 +56,24 @@ public class MenuView extends JFrame {
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    public void addMenuTab(String title, String[] items, String timeRange, String price, String imageName, boolean isAdmin) {
+        JPanel menuPanel = createMenuPanel(items, timeRange, price, imageName);
+
+        if (isAdmin) {
+            JButton editButton = new JButton("Editar " + title);
+            editButton.setActionCommand("Editar" + title);
+            menuPanel.add(editButton, BorderLayout.SOUTH);
+            editButtons.add(editButton);
+        }
+        
+        tabbedPane.addTab(title, menuPanel);
+    }
+
     private JPanel createMenuPanel(String[] items, String timeRange, String price, String imageName) {
-     
         JPanel containerPanel = new JPanel(new BorderLayout(10, 10));
         containerPanel.setBackground(CONTENT_BG);
         containerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
-      
         JPanel infoPanel = new JPanel(new GridLayout(1, 2, 10, 0));
         infoPanel.setBackground(INFO_BG);
         infoPanel.setBorder(BorderFactory.createCompoundBorder(
@@ -97,7 +93,6 @@ public class MenuView extends JFrame {
         infoPanel.add(priceLabel);
         containerPanel.add(infoPanel, BorderLayout.NORTH);
 
-
         JPanel contentPanel = new JPanel(new BorderLayout(15, 0));
         contentPanel.setBackground(CONTENT_BG);
         contentPanel.setBorder(BorderFactory.createCompoundBorder(
@@ -105,14 +100,12 @@ public class MenuView extends JFrame {
             new EmptyBorder(15, 15, 15, 15)
         ));
 
-        
         ImageIcon icon = new ImageIcon("src/assets/" + imageName);
         Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
         imageLabel.setBorder(new EmptyBorder(0, 0, 0, 15));
         contentPanel.add(imageLabel, BorderLayout.WEST);
 
-       
         JPanel itemsPanel = new JPanel();
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
         itemsPanel.setBackground(CONTENT_BG);
@@ -138,4 +131,12 @@ public class MenuView extends JFrame {
 
         return containerPanel;
     }
+
+    public void setController(ActionListener controller) {
+        for (JButton btn : editButtons) {
+            btn.addActionListener(controller);
+        }
+        backButton.addActionListener(controller);
+    }
+
 }
