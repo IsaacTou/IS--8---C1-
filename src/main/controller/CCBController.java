@@ -34,7 +34,7 @@ public class CCBController implements ActionListener {
 
         if ("GUARDAR DATOS".equals(command)) {
             try {
-                // Validar y convertir los datos
+                //Validar y convertir los datos
                 float costosFijos = validarFloatPositivo(view.getCostosFijos(), "Costos fijos");
                 float costosVariables = validarFloatPositivo(view.getCostosVariables(), "Costos variables");
                 int cantidadBandejas = validarEnteroPositivo(view.getNumeroBandejas(), "Número de bandejas");
