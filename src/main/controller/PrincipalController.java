@@ -1,5 +1,6 @@
 package src.main.controller;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import src.main.model.*;
@@ -8,9 +9,27 @@ import src.main.view.pages.*;
 
 public class PrincipalController implements ActionListener {
 	
+	
 
     private PrincipalView principalView;
+    private PrincipalView principalView;
 
+    public PrincipalController(PrincipalView principalView) {
+        this.principalView = principalView;
+    }
+    
+    public void initialize() {
+        this.principalView.setController((ActionListener) this);
+        principalView.userInfo(
+            SesionUser.getInstance().getUser().getUser(),
+            SesionUser.getInstance().getUser().getWallet()
+        );
+        
+        if(SesionUser.getInstance().getUser() != null && 
+            SesionUser.getInstance().getUser().getUserType().equals("admin")) {
+            principalView.isAdmin();
+        }
+    }
     public PrincipalController(PrincipalView principalView) {
         this.principalView = principalView;
     }

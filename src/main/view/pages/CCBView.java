@@ -1,11 +1,8 @@
 package src.main.view.pages;
 
-
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.*;
-import src.main.utils.FileUtils;
 import src.main.view.components.*;
 
 @SuppressWarnings("serial")
@@ -14,7 +11,7 @@ public class CCBView extends JFrame {
     private JPanel mainPanel;
     private JPanel formPanel;
     private JTextField cfTxt, cvTxt, nbTxt, mermaTxt;
-    private JButton saveButton;
+    private JLabel ccbLabel; // Reemplaza el saveButton
     private CalculateButton calculateButton;
     private BackButton backButton;
 
@@ -68,7 +65,7 @@ public class CCBView extends JFrame {
         yPos += spacing;
 
         
-        addCenteredField("Costos variables (%):", xPos, yPos, fieldWidth);
+        addCenteredField("Costos variables (Bs):", xPos, yPos, fieldWidth);
         cvTxt = createCenteredTextField(xPos, yPos + 25, fieldWidth);
 
         yPos += spacing;
@@ -90,38 +87,27 @@ public class CCBView extends JFrame {
         int buttonX = (400 - buttonWidth) / 2;
         int buttonHeight = 45;
 
-        saveButton = createStyledButton("Guardar Datos", buttonX, yPos, buttonWidth, buttonHeight);
+        ccbLabel = createCCBLabel(buttonX, yPos, buttonWidth, buttonHeight);
+        formPanel.add(ccbLabel);
         yPos += 60;
-
-        saveButton.addActionListener(e -> {
-    try {
-        String costosFijos = cfTxt.getText().trim();
-        String costosVariables = cvTxt.getText().trim();
-        String cantidadBandejas = nbTxt.getText().trim();
-        String porcentajeMerma = mermaTxt.getText().trim();
-
-        if (costosFijos.isEmpty() || costosVariables.isEmpty() || 
-            cantidadBandejas.isEmpty() || porcentajeMerma.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, rellene todos los campos.");
-            return;
-        }
-
-        String datos = costosFijos + "," + costosVariables + "," + cantidadBandejas + "," + porcentajeMerma;
-
-        FileUtils.guardarDatos("src/main/data/CCBData.txt", datos);
-
-        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
-
-    } catch (IOException ex) {
-        JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + ex.getMessage());
-    }
-});
-
-
 
         calculateButton = createStyledCalculateButton(buttonX, yPos, buttonWidth, buttonHeight);
         yPos += 60;
+
+        calculateButton.setActionCommand("GUARDAR DATOS");
+
         backButton = createStyledBackButton(buttonX, yPos, buttonWidth, buttonHeight);
+    }
+
+    private JLabel createCCBLabel(int x, int y, int width, int height) {
+        JLabel label = new JLabel("CCB Actual: 0.00 Bs", SwingConstants.CENTER);
+        label.setBounds(x, y, width, height);
+        label.setOpaque(true);
+        label.setBackground(new Color(240, 240, 240)); // Fondo gris claro
+        label.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
+        label.setFont(new Font("Sans Serif", Font.BOLD, 16));
+        label.setForeground(new Color(51, 51, 51));
+        return label;
     }
 
     private void addCenteredField(String label, int x, int y, int width) {
@@ -148,20 +134,9 @@ public class CCBView extends JFrame {
         return textField;
     }
 
-    private JButton createStyledButton(String text, int x, int y, int width, int height) {
-        JButton button = new JButton(text);
-        button.setBounds(x, y, width, height);
-        button.setBackground(new Color(4, 113, 166));
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-        formPanel.add(button);
-        return button;
-    }
-
     private CalculateButton createStyledCalculateButton(int x, int y, int width, int height) {
         CalculateButton button = new CalculateButton();
-        button.setText("Calcular");
+        button.setText("Guardar y Calcular");
         button.setBounds(x, y, width, height);
         button.setBackground(new Color(4, 113, 166));
         button.setForeground(Color.WHITE);
@@ -181,6 +156,14 @@ public class CCBView extends JFrame {
         return button;
     }
 
+    //Esto actualiza el ccb mostrado en pantalla
+    public void setCCBValue(Float ccb) {
+        if (ccb == null) {
+            ccbLabel.setText("CCB Actual: 0.00 Bs");
+        } else {
+            ccbLabel.setText(String.format("CCB Actual: %.2f Bs", ccb));
+        }
+    }
   
     public String getCostosFijos() { return cfTxt.getText(); }
     public String getCostosVariables() { return cvTxt.getText(); }
@@ -188,7 +171,6 @@ public class CCBView extends JFrame {
     public String getPorcentajeMerma() { return mermaTxt.getText(); }
 
     public void setController(ActionListener controller) {
-        saveButton.addActionListener(controller);
         calculateButton.addActionListener(controller);
         backButton.addActionListener(controller);
     }

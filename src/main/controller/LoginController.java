@@ -76,7 +76,7 @@ public class LoginController implements ActionListener {
 			login.warning("Contraseña incorrecta");
 			break;
 			case SUCCESS_OP:
-			login.confirm("Inicio de sesión exitoso");
+			//login.confirm("Inicio de sesión exitoso");
 			break;
 			default:
 			break;

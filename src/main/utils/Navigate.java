@@ -5,6 +5,7 @@ import src.main.view.pages.*;
 public class Navigate {
 
 	private static Navigate instance;
+	private PrincipalView principal;
 
 	private Navigate() {} 
 
@@ -29,14 +30,14 @@ public class Navigate {
 
 	public void initPurse() {
 		PurseView purse = new PurseView();
-		new PurseController(purse).initialize();
+		new PurseController(purse, principal).initialize();
 		purse.setVisible(true);
 	}
 
 	public void initPrincipal() {
-		PrincipalView view = new PrincipalView();
-		new PrincipalController(view).initialize();
-		view.setVisible(true);
+		principal = new PrincipalView();
+		new PrincipalController(principal).initialize();
+		principal.setVisible(true);
 	}
 
 	public void initCCBView() {
@@ -63,15 +64,16 @@ public class Navigate {
 		welcomeView.setVisible(true);       
 	}
 
-	public void initMenuView() {
-		MenuView menuView = new MenuView();
+
+	public void initMenuView(boolean isAdmin) {
+		MenuView menuView = new MenuView(isAdmin);
 		new MenuViewController(menuView).initialize();;
 		menuView.setVisible(true);
 	}
-
 	public void initScanMenuView() {
 		ScanMenuView scanView = new ScanMenuView();
 		new ScanMenuController(scanView).initialize();
 		scanView.setVisible(true);
 	}
+
 }

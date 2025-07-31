@@ -4,3 +4,5 @@
 4,4,admin,4,0
 3,3,admin,3,0
 5,5,Estudiante,5,0
+4,4,admin,4,0
+5,5,Estudiante,5,0

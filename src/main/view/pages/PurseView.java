@@ -1,100 +1,125 @@
 package src.main.view.pages;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import src.main.view.components.*;
-import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class PurseView extends JFrame {
 
 	JPanel panel;
-	JPanel imageBackground;
-	Button reloadButton, backButton;
-	int boxXPosition = 520;
-	int amountBoxYPosition = 265;
-	int bankBoxYPosition = 265 + 34;
-	int codeBoxYPosition = 265 + 34 + 34;
+	ReloadButton reloadButton;
+	BackButton backButton;
 	JTextField amountBox, codeBox;
 	JComboBox bankBox;
+	JLabel balanceLabel;
+
+	private final int IMAGE_WIDTH = 320;
+	private final int FORM_WIDTH = 350;
+	private final int FORM_HEIGHT = 280;
 
 	public PurseView() {
-		setSize(850,650); // (ancho, largo)
-		setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando cierre la ventana el programa finalizara
-		setTitle("SGCU - Ver Monedero"); // titulo de la ventana
-		setLocationRelativeTo(null); // centra la localizacion de la pantalla 
+		setSize(850,650);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("SGCU - Ver Monedero");
+		setLocationRelativeTo(null);
 		addPanel();
-		addImage();
 	}
 
 	private void addPanel() {
-		panel = new JPanel();
-		panel.setLayout(null);
+		panel = new JPanel(null);
+		panel.setBackground(new Color(240, 240, 240));
 		this.getContentPane().add(panel);
+		addImage();
+		// addTitle();
+		addFormContainer();
+	}
+
+	public void addTitle(String balance) {
 		JLabel title = new JLabel("RECARGAR");
-		title.setBounds(415, 132, 350, 40);
+		int titleWidth = 400;
+		int titleX = IMAGE_WIDTH + (850 - IMAGE_WIDTH - titleWidth) / 2;
+
+		title.setBounds(titleX, 120, titleWidth, 40);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setFont(new Font("Sans Serif", Font.BOLD, 48));
+		title.setFont(new Font("Sans Serif", Font.BOLD, 32));
+		title.setForeground(new Color(51, 51, 51));
 		panel.add(title);
-		addDescriptions();
-		addButtons();
-		addAmountBox();
-	}
 
-	private void addImage() {
-		ImagePanel imagePanel = new ImagePanel("register_background.png", 320, 650, 0, 0);
-		panel.add(imagePanel);
-	}
-
-	private void addDescriptions() {
-		int xPosition = 500;
-
-		double hardcodedBalance = 0.00;
-		JLabel balanceLabel = new JLabel("Saldo Actual: " + hardcodedBalance + "Bs");
-
-		balanceLabel.setBounds(xPosition, 230, 200, 20);
-		balanceLabel.setFont(new Font("Sans Serif", Font.PLAIN, 18));
+		balanceLabel = new JLabel("Saldo Actual: " + balance + "Bs");
+		balanceLabel.setBounds(titleX, 120 + 24, titleWidth, 40);
+		balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		balanceLabel.setFont(new Font("Sans Serif", Font.PLAIN, 16));
 		panel.add(balanceLabel);
 	}
-
-	private void addAmountBox() {
-		int xPosition = 450;
-
-		JLabel amountLabel = new JLabel("Saldo a recargar: ");
-		amountLabel.setBounds(xPosition, 230 + 34, 200, 20);
-		amountLabel.setFont(new Font("Sans Serif", Font.PLAIN, 18));
-		amountBox = new JTextField();
-		amountBox.setBounds(boxXPosition + 80, amountBoxYPosition, 150, 20);
-		panel.add(amountBox);
-		panel.add(amountLabel);
-
-		JLabel bankLabel = new JLabel("Banco: ");
-		bankLabel.setBounds(xPosition, 230 + 68, 200, 20);
-		bankLabel.setFont(new Font("Sans Serif", Font.PLAIN, 18));
-		String s1[] = { "Banco de Venezuela", "Bancamiga", "Banco Mercantil", "Banesco" };
-		bankBox = new JComboBox(s1);
-		bankBox.setBounds(boxXPosition + 80, bankBoxYPosition, 150, 20);
-		panel.add(bankBox);
-		panel.add(bankLabel);
-
-		JLabel codeLabel = new JLabel("Codigo: ");
-		codeLabel.setBounds(xPosition, 230 + 68 + 34, 200, 20);
-		codeLabel.setFont(new Font("Sans Serif", Font.PLAIN, 18));
-		codeBox = new JTextField();
-		codeBox.setBounds(boxXPosition + 80, codeBoxYPosition, 150, 20);
-		panel.add(codeBox);
-		panel.add(codeLabel);
+	public void refreshTitle(String balance) {
+		balanceLabel.setText("Saldo Actual: " + balance + "Bs");
 	}
 
-	private void addButtons() {
-		reloadButton = new ReloadButton();
-		reloadButton.setBounds(boxXPosition + 100, 410, 127, 28);
-		reloadButton.setActionCommand("RELOAD");
-		panel.add(reloadButton);
+	private void addFormContainer() {
+		int formX = IMAGE_WIDTH + (850 - IMAGE_WIDTH - FORM_WIDTH) / 2;
 
-		int xPosition = 450;
+		RoundedPanel formContainer = new RoundedPanel(20);
+		formContainer.setBounds(formX, 180, FORM_WIDTH, FORM_HEIGHT);
+		formContainer.setBackground(Color.WHITE);
+		formContainer.setLayout(null);
+		panel.add(formContainer);
+
+		addRoundedInputField("Saldo a recargar:", 40, formContainer);
+		addRoundedInputField("Banco:", 100, formContainer);
+		addRoundedInputField("Código:", 160, formContainer);
+		addButtons(formContainer);
+	}
+
+	private void addRoundedInputField(String labelText, int yPos, JPanel container) {
+		RoundedPanel fieldPanel = new RoundedPanel(15);
+		fieldPanel.setBackground(new Color(230, 230, 230)); 
+		fieldPanel.setBounds(25, yPos, 300, 40);
+		fieldPanel.setLayout(new BorderLayout());
+
+		if (labelText.equals("Banco:")) {
+			String s1[] = { "Banco de Venezuela", "Bancamiga", "Banco Mercantil", "Banesco" };
+			bankBox = new JComboBox(s1);
+			bankBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+			bankBox.setOpaque(true);
+			bankBox.setBackground(new Color(240, 240, 240));
+			fieldPanel.add(bankBox, BorderLayout.CENTER);
+		} else if (labelText.equals("Código:")) {
+			codeBox = new JTextField();
+			codeBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+			codeBox.setOpaque(true);
+			codeBox.setBackground(new Color(240, 240, 240));
+			fieldPanel.add(codeBox, BorderLayout.CENTER);
+		} else {
+			amountBox = new JTextField();
+			amountBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+			amountBox.setOpaque(true);
+			amountBox.setBackground(new Color(240, 240, 240));
+			fieldPanel.add(amountBox, BorderLayout.CENTER);
+		}
+
+		JLabel label = new JLabel(labelText);
+		label.setFont(new Font("Sans Serif", Font.PLAIN, 14));
+		label.setBounds(25, yPos - 25, 200, 20);
+		container.add(label);
+		container.add(fieldPanel);
+	}
+
+	private void addButtons(JPanel container) {
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+		buttonPanel.setBounds(25, 220, 300, 50);
+		buttonPanel.setOpaque(false);
+
 		backButton = new BackButton();
-		backButton.setBounds(xPosition, 410, 127, 28);
-		panel.add(backButton);
+		reloadButton = new ReloadButton();
+
+		buttonPanel.add(backButton);
+		buttonPanel.add(reloadButton);
+		container.add(buttonPanel);
+	}
+
+	public String getCode() {
+		return codeBox.getText();
 	}
 
 	public String getAmount() {
@@ -119,5 +144,19 @@ public class PurseView extends JFrame {
 			message,
 			"Operacion fallida",
 			JOptionPane.WARNING_MESSAGE);
+	}
+
+	private void addImage() {
+		try {
+			ImageIcon icon = new ImageIcon("src/assets/register_background.png");
+			if (icon.getImageLoadStatus() == MediaTracker.COMPLETE) {
+				JLabel imageLabel = new JLabel(icon);
+				imageLabel.setBounds(0, 0, IMAGE_WIDTH, 650);
+				panel.add(imageLabel);
+				panel.setComponentZOrder(imageLabel, panel.getComponentCount()-1);
+			}
+		} catch (Exception e) {
+			System.err.println("Error al cargar la imagen: " + e.getMessage());
+		}
 	}
 }
