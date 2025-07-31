@@ -174,4 +174,8 @@ public class ScanMenuView extends JFrame {
 	public String getImage() {
 		return image;
 	}
+
+	public void clearImage() {
+		this.image = null;
+	}
 }
