@@ -36,14 +36,14 @@ public class ScanMenuController implements ActionListener {
 			scuManager = new SCUDataManager();
 			ucvLector = new UCVDataReader();
 
-			if(uploadImageDirection == null) {
+			if (uploadImageDirection == null) {
 				scanMenuView.warning("Por favor, rellene todos los campos.");
 				return;
 			}
 
 			uploadImage = new File(uploadImageDirection);
 
-			if(ci.isEmpty()) {
+			if (ci.isEmpty()) {
 				scanMenuView.warning("Por favor, rellene todos los campos.");
 				uploadImage.delete();
 				return;
@@ -51,23 +51,28 @@ public class ScanMenuController implements ActionListener {
 
 			userExist = scuManager.userExist(ci);
 			
-			if(!userExist) {
+			if (!userExist) {
 				scanMenuView.warning("El usuario no se ha encontrado");
 				uploadImage.delete();
 				return;
 			}
 
 			bdImage = ucvLector.findBdImage(ci);
+			if (bdImage == null) {
+				scanMenuView.warning("Este usuario no tiene una imágen en la base de datos.");
+				return;
+			}
 
 			isEqual = ScannerData.isEqual(bdImage, uploadImage);
 
-			if(!isEqual) {
+			if (!isEqual) {
 				scanMenuView.warning("El escaneo ha fallado, no coincide con la información de secretaria.");
 				uploadImage.delete();
 				return;
 			}
-
-			if(isEqual) scanMenuView.confirm("El escaneo ha sido satisfactorio, el usuario puede pasar a la cola de bandeja.");
+			else {
+				scanMenuView.confirm("El escaneo ha sido satisfactorio, el usuario puede pasar a la cola de bandeja.");
+			}
 
 			uploadImage.delete(); // Se borra para evitar que queden archivos basuras en assets
 			
