@@ -36,9 +36,14 @@ public class ScanMenuController implements ActionListener {
 			scuManager = new SCUDataManager();
 			ucvLector = new UCVDataReader();
 
+			if(uploadImageDirection == null) {
+				scanMenuView.warning("Por favor, rellene todos los campos.");
+				return;
+			}
+
 			uploadImage = new File(uploadImageDirection);
 
-			if(ci.isEmpty() || uploadImageDirection == null) {
+			if(ci.isEmpty()) {
 				scanMenuView.warning("Por favor, rellene todos los campos.");
 				uploadImage.delete();
 				return;
