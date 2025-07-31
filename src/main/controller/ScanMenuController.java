@@ -4,7 +4,9 @@ import java.awt.event.ActionListener;
 import src.main.model.*;
 import src.main.utils.*;
 import src.main.view.pages.ScanMenuView;
-import java.io.File;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
 public class ScanMenuController implements ActionListener {
 
@@ -25,8 +27,7 @@ public class ScanMenuController implements ActionListener {
 
 		String command = e.getActionCommand();
 
-		if ("ESCANEAR".equals(command)) { // hacer el escaneo	
-
+		if ("ESCANEAR".equals(command)) { // hacer el escaneo		
 			File bdImage;
 			File uploadImage;
 			String ci = scanMenuView.getCi();
@@ -46,7 +47,6 @@ public class ScanMenuController implements ActionListener {
 
 			if (ci.isEmpty()) {
 				scanMenuView.warning("Por favor, rellene todos los campos.");
-				scanMenuView.clearImage(); // Evita direcciones basura
 				uploadImage.delete();
 				return;
 			}
@@ -55,32 +55,46 @@ public class ScanMenuController implements ActionListener {
 			
 			if (!userExist) {
 				scanMenuView.warning("El usuario no se ha encontrado");
-				scanMenuView.clearImage(); // Evita direcciones basura
 				uploadImage.delete();
 				return;
 			}
 
 			bdImage = ucvLector.findBdImage(ci);
-			if (bdImage == null) {
-				scanMenuView.warning("Este usuario no tiene una imágen en la base de datos.");
-				scanMenuView.clearImage(); // Evita direcciones basura
-				return;
-			}
 
 			isEqual = ScannerData.isEqual(bdImage, uploadImage);
 
 			if (!isEqual) {
 				scanMenuView.warning("El escaneo ha fallado, no coincide con la información de secretaria.");
-				scanMenuView.clearImage(); // Evita direcciones basura
 				uploadImage.delete();
 				return;
-			} else {
+			}
+
+			String amount = "0.01"; // hardcoded by now
+
+			try {
+				String filename = "src/main/data/SCUDataBase.txt";
+				List<String> lines = Files.readAllLines(Paths.get(filename));
+
+				for (int i = 0; i < lines.size(); i++) {
+					String line = lines.get(i);
+					if (line.startsWith(ci)) {
+						String[] parts = line.split(",", -1);
+						parts[parts.length - 1] = Float.toString(
+							Float.parseFloat(parts[parts.length - 1])
+							- Float.parseFloat(amount)
+						);
+						lines.set(i, String.join(",", parts));
+						Files.write(Paths.get(filename), lines);
+					}
+				}
 				scanMenuView.confirm("El escaneo ha sido satisfactorio, el usuario puede pasar a la cola de bandeja.");
+
+			} catch (IOException x) {
+				x.printStackTrace();
+				return;
 			}
 
 			uploadImage.delete(); // Se borra para evitar que queden archivos basuras en assets
-			scanMenuView.clearImage(); // Evita direcciones basura
-			
 		}
 		else if ("IMAGEN".equals(command)) {
 			scanMenuView.openFileSearch();
