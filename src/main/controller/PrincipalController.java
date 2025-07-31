@@ -9,27 +9,8 @@ import src.main.view.pages.*;
 
 public class PrincipalController implements ActionListener {
 	
-	
-
-    private PrincipalView principalView;
     private PrincipalView principalView;
 
-    public PrincipalController(PrincipalView principalView) {
-        this.principalView = principalView;
-    }
-    
-    public void initialize() {
-        this.principalView.setController((ActionListener) this);
-        principalView.userInfo(
-            SesionUser.getInstance().getUser().getUser(),
-            SesionUser.getInstance().getUser().getWallet()
-        );
-        
-        if(SesionUser.getInstance().getUser() != null && 
-            SesionUser.getInstance().getUser().getUserType().equals("admin")) {
-            principalView.isAdmin();
-        }
-    }
     public PrincipalController(PrincipalView principalView) {
         this.principalView = principalView;
     }

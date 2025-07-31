@@ -65,11 +65,12 @@ public class Navigate {
 	}
 
 
-	public void initMenuView(boolean isAdmin) {
-		MenuView menuView = new MenuView(isAdmin);
+	public void initMenuView() {
+		MenuView menuView = new MenuView();
 		new MenuViewController(menuView).initialize();;
 		menuView.setVisible(true);
 	}
+
 	public void initScanMenuView() {
 		ScanMenuView scanView = new ScanMenuView();
 		new ScanMenuController(scanView).initialize();
