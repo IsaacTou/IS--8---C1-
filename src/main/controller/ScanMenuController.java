@@ -47,6 +47,7 @@ public class ScanMenuController implements ActionListener {
 
 			if (ci.isEmpty()) {
 				scanMenuView.warning("Por favor, rellene todos los campos.");
+				scanMenuView.clearImage();
 				uploadImage.delete();
 				return;
 			}
@@ -55,16 +56,24 @@ public class ScanMenuController implements ActionListener {
 			
 			if (!userExist) {
 				scanMenuView.warning("El usuario no se ha encontrado");
+				scanMenuView.clearImage();
 				uploadImage.delete();
 				return;
 			}
 
 			bdImage = ucvLector.findBdImage(ci);
 
+			if(bdImage == null) {
+				scanMenuView.warning("El usuario no tiene una imagen asociada en la base de datos.");
+				scanMenuView.clearImage();
+				uploadImage.delete();
+			}
+
 			isEqual = ScannerData.isEqual(bdImage, uploadImage);
 
 			if (!isEqual) {
 				scanMenuView.warning("El escaneo ha fallado, no coincide con la información de secretaria.");
+				scanMenuView.clearImage();
 				uploadImage.delete();
 				return;
 			}
@@ -91,10 +100,12 @@ public class ScanMenuController implements ActionListener {
 
 			} catch (IOException x) {
 				x.printStackTrace();
+				scanMenuView.clearImage();
 				return;
 			}
 
 			uploadImage.delete(); // Se borra para evitar que queden archivos basuras en assets
+			scanMenuView.clearImage();
 		}
 		else if ("IMAGEN".equals(command)) {
 			scanMenuView.openFileSearch();
