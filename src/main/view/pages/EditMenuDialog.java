@@ -5,6 +5,8 @@ import java.io.*;
 import java.nio.file.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.event.ActionListener;
 
 public class EditMenuDialog extends JDialog { 
@@ -44,6 +46,9 @@ public class EditMenuDialog extends JDialog {
 
         changeImageBtn.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar imagen");
+		    fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "gif"));
+            
             int returnValue = fileChooser.showOpenDialog(this);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();

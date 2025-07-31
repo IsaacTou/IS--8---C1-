@@ -1,7 +1,16 @@
 package src.main.view.pages;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import src.main.view.components.*;
 
 @SuppressWarnings("serial")
@@ -13,8 +22,9 @@ public class ScanMenuView extends JFrame {
 	int boxXPosition = 520;
 	int userBoxYPosition = 280;
 	int xPosition = 440;
+	private String image;
 	ImageButton imageBox;
-	JTextField userBox;
+	JTextField ciBox;
 
 	private final int IMAGE_WIDTH = 320;
 	private final int FORM_WIDTH = 350;
@@ -85,7 +95,7 @@ public class ScanMenuView extends JFrame {
 		formContainer.setLayout(null);
 		panel.add(formContainer);
 
-		addRoundedInputField("Usuario:", 40, formContainer);
+		addRoundedInputField("ID(Cedula de identidad):", 40, formContainer);
 		addRoundedInputField("Imágen:", 100, formContainer);
 		addButtons(formContainer);
 	}
@@ -96,12 +106,12 @@ public class ScanMenuView extends JFrame {
 		fieldPanel.setBounds(25, yPos, 300, 40);
 		fieldPanel.setLayout(new BorderLayout());
 
-		if (labelText.equals("Usuario:")) {
-			userBox = new JTextField();
-			userBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
-			userBox.setOpaque(true);
-			userBox.setBackground(new Color(240, 240, 240));
-			fieldPanel.add(userBox, BorderLayout.CENTER);
+		if (labelText.equals("ID(Cedula de identidad):")) {
+			ciBox = new JTextField();
+			ciBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+			ciBox.setOpaque(true);
+			ciBox.setBackground(new Color(240, 240, 240));
+			fieldPanel.add(ciBox, BorderLayout.CENTER);
 		} else if (labelText.equals("Imágen:")) {
 			imageBox = new ImageButton();
 			// imageBox.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
@@ -117,27 +127,51 @@ public class ScanMenuView extends JFrame {
 		container.add(fieldPanel);
 	}
 
-	public String getUser() {
-		return userBox.getText();
+	public String getCi() {
+		return ciBox.getText();
 	}
 
 	public void setController(ActionListener controller) {
 		scanButton.addActionListener(controller);
 		backButton.addActionListener(controller);
+		imageBox.addActionListener(controller);
 	}
 
 	public void confirm(String message) {
-		JOptionPane.showMessageDialog(null,
-			message,
-			"Operacion exitosa",
-			JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showMessageDialog(null,
+            message,
+            "Operación exitosa",
+            JOptionPane.DEFAULT_OPTION);
+    }
 
+    public void warning(String message) {
+        JOptionPane.showMessageDialog(null,
+            message,
+            "Operación fallida",
+            JOptionPane.WARNING_MESSAGE);
+    }
+
+	public void openFileSearch() {
+		JFileChooser fileChooser = new JFileChooser();
+
+		fileChooser.setDialogTitle("Seleccionar imagen");
+		fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "gif"));
+
+		int returnValue = fileChooser.showOpenDialog(this);
+
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = fileChooser.getSelectedFile();
+			try {
+				Path destination = Paths.get("src/assets/" + selectedFile.getName());
+				Files.copy(selectedFile.toPath(), destination, StandardCopyOption.REPLACE_EXISTING);
+				image = "src/assets/" + selectedFile.getName();
+			} catch (IOException ex) {
+				JOptionPane.showMessageDialog(this, "Error al cambiar la imagen: " + ex.getMessage());
+			}
+		}
 	}
 
-	public void warning(String message) {
-		JOptionPane.showMessageDialog(null,
-			message,
-			"Operacion fallida",
-			JOptionPane.WARNING_MESSAGE);
+	public String getImage() {
+		return image;
 	}
 }

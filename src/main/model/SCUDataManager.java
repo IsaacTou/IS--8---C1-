@@ -12,9 +12,9 @@ public class SCUDataManager {
     private String ruteString;
     private String loginTarget;
 
-    private static int USER_TAKEN = 0;
-    private static int ALREADY_REGISTER = 2;
-    private static int NOT_INVALID_OPERATIONS = 3;
+    private final int USER_TAKEN = 0;
+    private final int ALREADY_REGISTER = 2;
+    private final int NOT_INVALID_OPERATIONS = 3;
     
     public SCUDataManager() {
         ruteString = "src/main/data/SCUDataBase.txt";
@@ -64,13 +64,15 @@ public class SCUDataManager {
         return NOT_INVALID_OPERATIONS;
     }
 
-    public boolean userExist(String user) {
+    public boolean userExist(String data) {
         try (BufferedReader br = new BufferedReader(new FileReader(ruteString))){
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts[1].equals(user)) {
+                if (parts[1].equals(data)) {
                     this.loginTarget = line;
+                    return true;
+                } else if (parts[0].equals(data)) {
                     return true;
                 }
             }

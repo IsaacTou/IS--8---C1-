@@ -30,7 +30,7 @@ public class SesionUserTest {
         SesionUser instance1 = SesionUser.getInstance();
         SesionUser instance2 = SesionUser.getInstance();
         SesionUser instance3 = SesionUser.getInstance();
-
+        
         // Verificar que todas las llamadas a getInstance() devuelven el mismo objeto
         assertSame(instance1, instance2, "instance1 y instance2 deberían ser la misma instancia");
         assertSame(instance1, instance3, "instance1 y instance3 deberían ser la misma instancia");
