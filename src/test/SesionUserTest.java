@@ -49,7 +49,7 @@ public class SesionUserTest {
         assertEquals("31065844", retrievedUser.getCi(), "La cédula del usuario debería coincidir");
         assertEquals("Isaac", retrievedUser.getUser(), "El nombre de usuario debería coincidir");
         assertEquals("Estudiante", retrievedUser.getUserType(), "El tipo de usuario debería coincidir");
-        assertEquals("0.0", retrievedUser.getWallet(), "El saldo del usuario debería coincidir");
+        assertEquals("95.905", retrievedUser.getWallet(), "El saldo del usuario debería coincidir");
     }
 
     @Test
