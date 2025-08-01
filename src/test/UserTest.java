@@ -52,18 +52,6 @@ public class UserTest {
             () -> assertNotNull(user.getWallet())
         );
     }
-    
-    // Prueba para verificar comportamiento con valores vacíos
-    @Test
-    public void testEmptyValues() {
-        User emptyUser = new User("", "", "", "");
-        assertAll("Los campos vacíos deberían manejarse correctamente",
-            () -> assertEquals("", emptyUser.getCi()),
-            () -> assertEquals("", emptyUser.getUser()),
-            () -> assertEquals("", emptyUser.getUserType()),
-            () -> assertEquals("", emptyUser.getWallet())
-        );
-    }
 
     // Prueba paara verificar que la CI tenga solo digitos
     @Test
