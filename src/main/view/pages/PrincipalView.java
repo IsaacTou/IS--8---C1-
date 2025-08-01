@@ -12,7 +12,6 @@ public class PrincipalView extends JFrame {
 
 	JPanel panel;
 	JPanel separationPanel;
-	// RoundedPanel centerPanel;
 	ImagePanel imageBackground;
 	ImagePanel centerBackground;
 	ConsumeButton consume;
@@ -47,7 +46,7 @@ public class PrincipalView extends JFrame {
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setFont(new Font("Sans Serif", Font.PLAIN, 20));
 		title.setForeground(new Color(0, 51, 102)); 
-		walletLabel = new JLabel("Su saldo disponible es de: " + wallet);
+		walletLabel = new JLabel("Saldo: " + wallet);
 		walletLabel.setBounds(0, 30, 220, 30); 
 		walletLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		walletLabel.setFont(new Font("Sans Serif", Font.PLAIN, 15));
@@ -67,6 +66,12 @@ public class PrincipalView extends JFrame {
 		this.getContentPane().add(panel);
 	}
 
+	private void addImage() {
+		imageBackground = new ImagePanel("principal_background.png",850, 650, 230, 0);
+		this.getContentPane().add(imageBackground);
+	}
+
+	
 	private void addSeparationPanel() {
 		separationPanel = new JPanel();
 		separationPanel.setLayout(null);
@@ -80,24 +85,7 @@ public class PrincipalView extends JFrame {
 		separationPanel.add(title); 
 		panel.add(separationPanel);
 	}
-
-	private void addImage() {
-		imageBackground = new ImagePanel("principal_background.png",850, 650, 230, 0);
-		this.getContentPane().add(imageBackground);
-	}
-
-	/*
-	private void addCenterPanel() {
-		centerPanel = new RoundedPanel(30); 
-		centerPanel.setBackground(Color.WHITE); 
-		centerPanel.setLayout(null);
-		centerPanel.setBounds(420, 200, 200, 250);
-		centerBackground = new ImagePanel("user_icon.png",100,100,50,50);
-		centerPanel.add(centerBackground);
-
-		this.getContentPane().add(centerPanel);
-	}
-    */
+    
 
 	private void addButtons() {
 		/*
@@ -108,7 +96,7 @@ public class PrincipalView extends JFrame {
 		*/
 
 		checkPurse = new CheckPurseButton(); 
-		checkPurse.setBounds(40, 60, 130, 25);
+		checkPurse.setBounds(40, 90, 130, 25);
 		checkPurse.setFont(new Font("Arial", Font.BOLD, 18));
 		panel.add(checkPurse);
 
@@ -118,7 +106,7 @@ public class PrincipalView extends JFrame {
 		panel.add(checkMenu);
 
 		logout = new LogoutButton();
-		logout.setBounds(30, 110, 160, 50);
+		logout.setBounds(30, 130, 160, 50);
 		panel.add(logout);
 	}
 
