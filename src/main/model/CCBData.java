@@ -48,6 +48,28 @@ public class CCBData {
         return datos;
     }
 
+    public String getCCBByTypeUser(String userType) {
+
+        float CCB = Float.parseFloat(datos);
+        if (userType.equals("admin") || userType.equals("Empleado")) {
+
+            float amount = (CCB * 100) / 100;
+            return amount + "";
+
+        } else if (userType.equals("Profesor")) {
+
+            float amount = (CCB * 70) / 100;
+            return amount + "";
+
+        } else if (userType.equals("Estudiante")) {
+
+            float amount = (CCB * 25) / 100;
+            return amount + "";
+
+        } 
+        return null;
+    }
+
     public LocalDate getFechaUltimaCarga() {
         return fechaUltimaCarga;
     }

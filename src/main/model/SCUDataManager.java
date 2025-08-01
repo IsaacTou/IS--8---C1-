@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 
 public class SCUDataManager {
@@ -93,6 +96,39 @@ public class SCUDataManager {
         return false;
 
     }
+
+    public boolean discount(String amount, String ci) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(ruteString));
+
+		    for (int i = 0; i < lines.size(); i++) {
+			    String line = lines.get(i);
+			    if (line.startsWith(ci)) {
+
+				    String[] parts = line.split(",", -1);
+                    float discount = Float.parseFloat(parts[parts.length - 1])
+				    - Float.parseFloat(amount);
+
+                    if (discount < 0.0) {
+                        return false;
+                    }
+
+				    parts[parts.length - 1] = Float.toString(discount);
+                    
+				    lines.set(i, String.join(",", parts));
+				    Files.write(Paths.get(ruteString), lines);
+                    return true;		
+                }
+            } 
+            
+            return false; 
+        } catch(IOException x) {
+			x.printStackTrace();
+            return false;
+        }
+
+    }
+    
 
     public String getCi() {
         String[] parts = this.loginTarget.split(",");

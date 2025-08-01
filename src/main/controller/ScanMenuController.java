@@ -10,6 +10,7 @@ import java.util.*;
 
 public class ScanMenuController implements ActionListener {
 
+	private CCBData ccbData;
 	private ScanMenuView scanMenuView;
 	private UCVDataReader ucvLector;
 	private SCUDataManager scuManager;
@@ -28,13 +29,18 @@ public class ScanMenuController implements ActionListener {
 		String command = e.getActionCommand();
 
 		if ("ESCANEAR".equals(command)) { // hacer el escaneo		
+
 			File bdImage;
 			File uploadImage;
 			String ci = scanMenuView.getCi();
 			String uploadImageDirection = scanMenuView.getImage();
+			String userType;
+			String amount;
 			boolean userExist;
 			boolean isEqual;
+			boolean succesDiscount;
 
+			ccbData = new CCBData("src/main/data/CCBData.txt");
 			scuManager = new SCUDataManager();
 			ucvLector = new UCVDataReader();
 
@@ -78,31 +84,21 @@ public class ScanMenuController implements ActionListener {
 				return;
 			}
 
-			String amount = "0.01"; // hardcoded by now
+			ucvLector.findCi(ci);
+			userType = ucvLector.getUserType();
 
-			try {
-				String filename = "src/main/data/SCUDataBase.txt";
-				List<String> lines = Files.readAllLines(Paths.get(filename));
+			amount = ccbData.getCCBByTypeUser(userType);
 
-				for (int i = 0; i < lines.size(); i++) {
-					String line = lines.get(i);
-					if (line.startsWith(ci)) {
-						String[] parts = line.split(",", -1);
-						parts[parts.length - 1] = Float.toString(
-							Float.parseFloat(parts[parts.length - 1])
-							- Float.parseFloat(amount)
-						);
-						lines.set(i, String.join(",", parts));
-						Files.write(Paths.get(filename), lines);
-					}
-				}
-				scanMenuView.confirm("El escaneo ha sido satisfactorio, el usuario puede pasar a la cola de bandeja.");
+			succesDiscount = scuManager.discount(amount, ci);
 
-			} catch (IOException x) {
-				x.printStackTrace();
+			if (!succesDiscount) {
+				scanMenuView.warning("El usuario no posee saldo suficiente en su cuenta");
 				scanMenuView.clearImage();
+				uploadImage.delete();
 				return;
 			}
+
+			scanMenuView.confirm("El escaneo ha sido satisfactorio, se ha descontado " + amount + " bs al usuario.");
 
 			uploadImage.delete(); // Se borra para evitar que queden archivos basuras en assets
 			scanMenuView.clearImage();

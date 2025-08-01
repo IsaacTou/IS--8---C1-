@@ -1,6 +1,6 @@
 31065844,Estudiante,PUTO.jpg
 31789143,Profesor,
 30967178,admin,
-12356871,Empleado,
+12356871,Empleado,12356871.jpg
 500123,Estudiante,
 109999,Profesor,

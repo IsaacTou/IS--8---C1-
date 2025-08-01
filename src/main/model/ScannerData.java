@@ -9,6 +9,14 @@ public class ScannerData {
 
     public static boolean isEqual(File secretaryFile, File uploadFile) {
 
+        if (secretaryFile == null || uploadFile == null) {
+            return false;
+        }
+    
+        if (!secretaryFile.exists() || !uploadFile.exists()) {
+            return false;
+        }
+
         try {
             BufferedImage bdSecretary = ImageIO.read(secretaryFile);
             BufferedImage uploadImage = ImageIO.read(uploadFile);
