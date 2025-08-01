@@ -12,13 +12,15 @@ public class MenuViewController implements ActionListener {
 
 	private MenuView menuView;
     private EditMenuDialog editMenuDialog;
+    private String userType;
     private boolean adminView;
 
 	public MenuViewController(MenuView menuView) {
 
 		this.menuView = menuView;
         this.adminView = SesionUser.getInstance().getUser().getUserType().equals("admin");
-        MenuData.getInstance().loadMenus();
+        userType = SesionUser.getInstance().getUser().getUserType();
+        MenuData.getInstance().loadMenus(userType);
 
         //Cargar los MENU en la vista con los datos del modelo
 

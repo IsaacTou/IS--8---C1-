@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import src.main.model.*;
-import src.main.utils.*;
 
 public class PurseController implements ActionListener {
 

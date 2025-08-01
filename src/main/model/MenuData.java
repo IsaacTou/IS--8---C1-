@@ -12,9 +12,11 @@ public class MenuData {
     
     private static MenuData instance;
     private Map<String, Menu> menusData;
+    private CCBData ccbData;
 
     private MenuData() {
         this.menusData = new HashMap<>();
+        this.ccbData = new CCBData("src/main/data/CCBData.txt");
     } 
 
     public static MenuData getInstance() {
@@ -24,19 +26,19 @@ public class MenuData {
         return instance;
     }
 
-    public void loadMenus() {
+    public void loadMenus(String userType) {
         
         menusData.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/data/MenusData.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                if (parts.length == 5) {
+                if (parts.length == 4) {
                     String title = parts[0];
                     String timeRange = parts[1];
-                    String price = parts[2];
-                    String[] items = parts[3].split(",");
-                    String imageName = parts[4];
+                    String price = ccbData.getCCBByTypeUser(userType) + " Bs";
+                    String[] items = parts[2].split(",");
+                    String imageName = parts[3];
                     menusData.put(title, new Menu(items, timeRange, price, imageName));
                 }
             }
@@ -51,7 +53,6 @@ public class MenuData {
                 Menu menu = entry.getValue();
                 writer.write(entry.getKey() + "|" + 
                             menu.getTimeRange() + "|" + 
-                            menu.getDataPrice() + "|" + 
                             String.join(",", menu.getItems()) + "|" + 
                             menu.getDataImageName());
                 writer.newLine();

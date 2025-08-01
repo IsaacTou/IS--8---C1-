@@ -5,8 +5,6 @@ import src.main.model.*;
 import src.main.utils.*;
 import src.main.view.pages.ScanMenuView;
 import java.io.*;
-import java.nio.file.*;
-import java.util.*;
 
 public class ScanMenuController implements ActionListener {
 
