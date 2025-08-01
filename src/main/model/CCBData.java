@@ -10,7 +10,7 @@ public class CCBData {
     private String rutaArchivo;
 
     public CCBData(String rutaArchivo) {
-        this.fechaUltimaCarga = null;
+        fechaUltimaCarga = null;
         this.rutaArchivo = rutaArchivo;
         cargarDatosAnteriores();
     }
@@ -31,7 +31,7 @@ public class CCBData {
     public void guardarDatos(String datos, String rutaArchivo) throws IOException {
         if (puedeCargar()) {
             FileUtils.guardarDatos(rutaArchivo, datos);
-            this.fechaUltimaCarga = LocalDate.now();
+            fechaUltimaCarga = LocalDate.now();
             this.datos = datos;
         } else {
             throw new IOException("Ya se cargaron datos para el día de hoy.");
@@ -53,21 +53,25 @@ public class CCBData {
         float CCB = Float.parseFloat(datos);
         if (userType.equals("admin") || userType.equals("Empleado")) {
 
-            float amount = (CCB * 100) / 100;
+            float amount = roundedTwoDecimals((CCB * 100) / 100);
             return amount + "";
 
         } else if (userType.equals("Profesor")) {
 
-            float amount = (CCB * 70) / 100;
+            float amount = roundedTwoDecimals((CCB * 70) / 100);
             return amount + "";
 
         } else if (userType.equals("Estudiante")) {
 
-            float amount = (CCB * 25) / 100;
+            float amount = roundedTwoDecimals((CCB * 25) / 100);
             return amount + "";
 
         } 
         return null;
+    }
+
+    public float roundedTwoDecimals(float value) {
+        return Math.round(value * 100) / 100f;
     }
 
     public LocalDate getFechaUltimaCarga() {

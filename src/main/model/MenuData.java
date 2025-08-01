@@ -16,7 +16,6 @@ public class MenuData {
 
     private MenuData() {
         this.menusData = new HashMap<>();
-        this.ccbData = new CCBData("src/main/data/CCBData.txt");
     } 
 
     public static MenuData getInstance() {
@@ -29,6 +28,7 @@ public class MenuData {
     public void loadMenus(String userType) {
         
         menusData.clear();
+        this.ccbData = new CCBData("src/main/data/CCBData.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/data/MenusData.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
