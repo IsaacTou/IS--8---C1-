@@ -56,7 +56,7 @@ public class PrincipalView extends JFrame {
 	}
 
 	public void refreshBalance(String wallet) {
-		walletLabel.setText("Su saldo disponible es de: " + wallet);
+		walletLabel.setText("Saldo: " + wallet);
 	}
 
 	private void addPanel() {
