@@ -17,7 +17,7 @@ public class ScannerDataTest {
 	@Test
 	public void testIsEqualInvalidFiles() {
 		invalid = new File("invalid");
-		valid = new File("FaceIDTest/test.jpg");
+		valid = new File("src/test/FaceIDTest/test.jpg");
 		assertEquals(
 			ScannerData.isEqual(valid, invalid),
 			false,
@@ -37,7 +37,7 @@ public class ScannerDataTest {
 
 	@Test
 	public void testIsEqual() {
-		valid = new File("FaceIDTest/test.jpg");
+		valid = new File("src/test/FaceIDTest/test.jpg");
 		assertTrue(
 			ScannerData.isEqual(valid, valid),
 			"Una imagen debería ser igual a sí misma."
