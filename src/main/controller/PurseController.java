@@ -42,6 +42,10 @@ public class PurseController implements ActionListener {
 				JOptionPane.showMessageDialog(purseView, "La cantidad a recargar debe ser numérica");
 				return;
 			}
+			if(Float.parseFloat(amount) <= 0) {
+				JOptionPane.showMessageDialog(purseView, "La cantidad a recargar debe ser mayor que 0");
+				return;
+			}
 			try {
 				Integer.parseInt(code);
 			}
